@@ -161,10 +161,12 @@ def test_get_in_touch(driver):
     button = driver.find_element_by_css_selector(
         ".header__mail-button"
     ).click()
+
     header = driver.find_element_by_css_selector(
         ".feedback-form.js--feedback-form.js--form.visible > form[method='post'] > .feedback-form__title"
     ).text
     assert  "Share" in header
+
     close_button = driver.find_element_by_css_selector(
         ".feedback-form.js--feedback-form.js--form.visible > form[method='post']  .feedback-form__close.js--form-close > svg"
     ).click()
