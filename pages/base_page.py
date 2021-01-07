@@ -10,11 +10,11 @@ class BasePage:
     def __init__(self, driver: RemoteWebDriver, link, timeout=10):
         self.driver = driver
         self.link = link
-        self.browser.implicitly_wait(timeout)
+        self.driver.implicitly_wait(timeout)
 
     def is_element_present(self, how, what):
         try:
-            self.browser.find_element(how, what)
+            self.driver.find_element(how, what)
         except (NoSuchElementException):
             return False
         return True

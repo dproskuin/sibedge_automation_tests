@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver import Remote as RemoteWebDriver
 import pytest
-
+from .locators import MainPageLocators
 
 link = "https://sibedge.com/en/"
 
@@ -24,8 +24,7 @@ class MainPage(BasePage):
             ".header__nav.js--header-nav > .nav > li:nth-of-type(4) > .nav__item-link"
         )
         models.click()
-        models_header = self.driver.find_element_by_css_selector(".redesign-header__title").text
-        return models_header
+        assert self.is_element_present(*MainPageLocators.MODELS_HEADER), "Header is not presented. Check test results."
 
     def open_projects_page(self):
         projects = self.driver.find_element(By.CSS_SELECTOR,
@@ -89,10 +88,6 @@ class MainPage(BasePage):
             ".header__mail-button"
         )
         get_in_touch_button.click()
-
-        get_in_touch_header = self.driver.find_element(By.CSS_SELECTOR,
-            ".feedback-form.js--feedback-form.js--form.visible > form[method='post'] > .feedback-form__title"
-        ).text()
 
     def close_get_in_touch_form(self):
         form_close_button = self.driver.find_element(By.CSS_SELECTOR,

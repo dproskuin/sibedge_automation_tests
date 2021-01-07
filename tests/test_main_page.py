@@ -8,6 +8,7 @@ def test_user_can_go_to_models_page(driver):
     page.accept_cookie()
     page.open_models_page()
 
+
 def test_user_can_go_to_projects_page(driver):
     page = MainPage(driver, link)
     page.open()
