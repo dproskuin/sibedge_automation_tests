@@ -3,7 +3,7 @@ import pytest
 """Here are located the test cases, that contains steps (class methods calling)"""
 
 
-@pytest.mark.regression
+
 def test_user_can_go_to_models_page(driver):
     page = MainPage(driver, link)
     page.open()

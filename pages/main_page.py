@@ -5,10 +5,10 @@ from selenium.webdriver import Remote as RemoteWebDriver
 import pytest
 from .locators import ModelsPageLocators, ProjectsPageLocators, ClientsPageLocators,\
     ContactsPageLocators, DevelopmentPageLocators, QaPageLocators, DevopsPageLocators,\
-    RdPageLocators, WhySibedgeLocators, PressPageLocators, BlogPageLocators, MainPageLocators, \
+    RdPageLocators, WhySibedgePageLocators, PressPageLocators, BlogPageLocators, MainPageLocators, \
     SubscribeToUsFormLocators, GetInTouchFormLocators
 
-link = "https://sibedge.com/en/"
+link = "https://se.sibedge.com/en/"
 
 class MainPage(BasePage):
     """Methods with open_page steps and asserts"""
@@ -100,7 +100,7 @@ class MainPage(BasePage):
             ".header__logo > svg"
         )
         logo.click()
-        url = "https://sibedge.com/en/"
+        url = "https://se.sibedge.com/en/"
         assert url == MainPageLocators.MAIN_URL
 
     def open_get_in_touch_form(self):

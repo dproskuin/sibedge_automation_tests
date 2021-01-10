@@ -37,10 +37,10 @@ class BlogPageLocators():
     BLOG_HEADER = (By.CSS_SELECTOR, ".redesign-header__title-highlight")
 
 class MainPageLocators():
-    MAIN_URL = ("https://sibedge.com/en/")
+    MAIN_URL = ("https://se.sibedge.com/en/")
 
 class SubscribeToUsFormLocators():
     SUBSCRIBETOUS_HEADER = (By.CSS_SELECTOR, ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] > .feedback-form__title")
 
 class GetInTouchFormLocators():
-    GETINTOUCH_HEADER = (By.CSS_SELECTOR, ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] > .feedback-form__title")
+    GETINTOUCH_HEADER = (By.CSS_SELECTOR, ".feedback-form.js--feedback-form.js--form.visible > form[method='post'] > .feedback-form__title")
