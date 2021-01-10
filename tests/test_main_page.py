@@ -1,5 +1,7 @@
 from pages.main_page import MainPage, link
 import pytest
+"""Here are located the test cases, that contains steps (class methods calling)"""
+
 
 @pytest.mark.regression
 def test_user_can_go_to_models_page(driver):
@@ -7,7 +9,6 @@ def test_user_can_go_to_models_page(driver):
     page.open()
     page.accept_cookie()
     page.open_models_page()
-
 
 def test_user_can_go_to_projects_page(driver):
     page = MainPage(driver, link)
@@ -56,8 +57,6 @@ def test_user_can_go_to_main_page_by_clicking_to_logo(driver):
     page.open()
     page.accept_cookie()
     page.open_main_page_by_click_to_logo()
-    url = "https://sibedge.com/en/"
-    assert driver.current_url == url
 
 def test_user_can_open_get_in_touch_form(driver):
     page = MainPage(driver, link)
