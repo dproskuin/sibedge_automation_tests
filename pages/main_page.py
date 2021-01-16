@@ -11,7 +11,7 @@ from .locators import ModelsPageLocators, ProjectsPageLocators, ClientsPageLocat
 link = "https://se.sibedge.com/en/"
 
 class MainPage(BasePage):
-    """This class contains methods for opening pages and asserts"""
+    """This class contains methods for opening pages/elements and asserts"""
 
     def open_about_us_list(self):
         about_us = self.driver.find_element(By.CSS_SELECTOR, ".nav__item:nth-of-type(2) .nav__item-link")
@@ -102,6 +102,7 @@ class MainPage(BasePage):
         logo.click()
         url = "https://se.sibedge.com/en/"
         assert url == MainPageLocators.MAIN_URL
+        assert self.is_element_present(*MainPageLocators.FEEDBACK_FORM), "Feedback form is not present. Check test results"
 
     def open_get_in_touch_form(self):
         get_in_touch_button = self.driver.find_element(By.CSS_SELECTOR,

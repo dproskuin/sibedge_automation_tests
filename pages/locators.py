@@ -38,6 +38,7 @@ class BlogPageLocators():
 
 class MainPageLocators():
     MAIN_URL = ("https://se.sibedge.com/en/")
+    FEEDBACK_FORM = (By.CSS_SELECTOR, ".redesign-discuss-project")
 
 class SubscribeToUsFormLocators():
     SUBSCRIBETOUS_HEADER = (By.CSS_SELECTOR, ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] > .feedback-form__title")
