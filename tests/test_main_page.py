@@ -90,6 +90,7 @@ def test_open_subscribe_to_us_form(driver):
     page.accept_cookie()
     page.open_subscribe_to_us_form()
 
+@pytest.mark.smoke
 def test_open_sitemap_page(driver):
     page = MainPage(driver, link)
     page.open()

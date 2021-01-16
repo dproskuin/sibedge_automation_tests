@@ -154,7 +154,7 @@ class MainPage(BasePage):
             *SubscribeToUsFormLocators.SUBSCRIBETOUS_HEADER), "Subscribe to us header is not presented. Check test results."
 
     def open_sitemap_page(self):
-        sitemap_link = "https://se.sibedge.com/sitemap/"
+        sitemap_link = "https://dev.sibedge.com/sitemap/"
         self.driver.get(sitemap_link)
         assert self.is_element_present(*SitemapLocators.SITEMAP_HEADER), "Sitemap header is not presented."
 
