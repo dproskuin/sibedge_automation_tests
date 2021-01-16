@@ -90,6 +90,13 @@ def test_open_subscribe_to_us_form(driver):
     page.accept_cookie()
     page.open_subscribe_to_us_form()
 
+def test_open_sitemap_page(driver):
+    page = MainPage(driver, link)
+    page.open()
+    page.accept_cookie()
+    page.open_sitemap_page()
+
+
 
 
 @pytest.mark.parametrize('language', ["en", "ru"])
@@ -98,5 +105,7 @@ def test_user_should_see_en_and_ru_pages(driver, language):
     driver.get(link)
     url = driver.current_url
     assert url == link, "URL не совпадают!"
+
+
 
 

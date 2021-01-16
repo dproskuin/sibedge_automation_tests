@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-"""There can be added new locators for elements in exact page class. They are presented like constants."""
+"""Here are located locators for elements. Structure - Page (class) -> Locator for element (constant) """
 
 
 
@@ -44,3 +44,6 @@ class SubscribeToUsFormLocators():
 
 class GetInTouchFormLocators():
     GETINTOUCH_HEADER = (By.CSS_SELECTOR, ".feedback-form.js--feedback-form.js--form.visible > form[method='post'] > .feedback-form__title")
+
+class SitemapLocators():
+    SITEMAP_HEADER = (By.CSS_SELECTOR, ".contain-within.sitemap-container > .sitemap-container-header")
