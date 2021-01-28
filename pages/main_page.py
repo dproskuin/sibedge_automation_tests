@@ -6,7 +6,7 @@ import pytest
 from .locators import ModelsPageLocators, ProjectsPageLocators, ClientsPageLocators,\
     ContactsPageLocators, DevelopmentPageLocators, QaPageLocators, DevopsPageLocators,\
     RdPageLocators, WhySibedgePageLocators, PressPageLocators, BlogPageLocators, MainPageLocators, \
-    SubscribeToUsFormLocators, GetInTouchFormLocators, SitemapLocators
+    SubscribeToUsFormLocators, GetInTouchFormLocators, SitemapLocators, TeamExtensionLocators
 
 link = "https://se.sibedge.com/en/"
 
@@ -89,6 +89,15 @@ class MainPage(BasePage):
         rd_button.click()
         assert self.is_element_present(
             *RdPageLocators.RD_HEADER), "R&D header is not presented. Check test results."
+
+    def open_team_extension(self):
+        self.open_services_list()
+        team_extension_button = self.driver.find_element(By.CSS_SELECTOR,
+        "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link"
+        )
+        team_extension_button.click()
+        assert self.is_element_present(
+            *TeamExtensionLocators.TEAMEXTENSION_HEADER), "Team Extension page header is not presented. Check test results."
 
     def accept_cookie(self):
         cookies_accept = self.driver.find_element(By.CSS_SELECTOR,

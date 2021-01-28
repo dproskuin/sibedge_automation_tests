@@ -27,6 +27,9 @@ class DevopsPageLocators():
 class RdPageLocators():
     RD_HEADER = (By.CSS_SELECTOR, ".services-item__desc > .contain-within.contain-within--half.js--emulate-margin-left.services-item__desc-title.services-item__desc-title--huge")
 
+class TeamExtensionLocators():
+    TEAMEXTENSION_HEADER = (By.CSS_SELECTOR, ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
+
 class WhySibedgePageLocators():
     WHYSIBEDGE_HEADER = (By.CSS_SELECTOR, "header > .redesign-header__title")
 
@@ -48,3 +51,4 @@ class GetInTouchFormLocators():
 
 class SitemapLocators():
     SITEMAP_HEADER = (By.CSS_SELECTOR, ".contain-within.sitemap-container > .sitemap-container-header")
+

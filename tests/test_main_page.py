@@ -65,6 +65,13 @@ def test_user_can_open_get_in_touch_form(driver):
     page.open_get_in_touch_form()
     page.close_get_in_touch_form()
 
+#проверить!
+def test_user_can_go_to_team_extension_page(driver):
+    page = MainPage(driver, link)
+    page.open()
+    page.accept_cookie()
+    page.open_team_extension()
+
 def test_open_why_sibedge_page(driver):
     page = MainPage(driver, link)
     page.open()
