@@ -1,6 +1,6 @@
 from pages.main_page import MainPage, link
 import pytest
-"""Here are located the test cases, that contains steps (class methods calling)"""
+"""Here are located all test cases, type 'pytest -v -m test_main_page.py' in terminal to start"""
 
 
 
@@ -46,11 +46,17 @@ def test_user_can_go_to_devops_page(driver):
     page.accept_cookie()
     page.open_devops_page()
 
-def test_user_can_go_to_r_d_page(driver):
+def test_user_can_go_to_squads_product_page(driver):
     page = MainPage(driver, link)
     page.open()
     page.accept_cookie()
-    page.open_r_d_page()
+    page.open_squads_product_page()
+
+#def test_user_can_go_to_r_d_page(driver):
+    #page = MainPage(driver, link)
+    #page.open()
+    #page.accept_cookie()
+    #page.open_r_d_page()
 
 def test_user_can_go_to_main_page_by_clicking_to_logo(driver):
     page = MainPage(driver, link)
@@ -65,12 +71,11 @@ def test_user_can_open_get_in_touch_form(driver):
     page.open_get_in_touch_form()
     page.close_get_in_touch_form()
 
-#проверить!
 def test_user_can_go_to_team_extension_page(driver):
     page = MainPage(driver, link)
     page.open()
     page.accept_cookie()
-    page.open_team_extension()
+    page.open_team_extension_page()
 
 def test_open_why_sibedge_page(driver):
     page = MainPage(driver, link)
@@ -97,14 +102,11 @@ def test_open_subscribe_to_us_form(driver):
     page.accept_cookie()
     page.open_subscribe_to_us_form()
 
-@pytest.mark.smoke
 def test_open_sitemap_page(driver):
     page = MainPage(driver, link)
     page.open()
     page.accept_cookie()
     page.open_sitemap_page()
-
-
 
 
 @pytest.mark.parametrize('language', ["en", "ru"])

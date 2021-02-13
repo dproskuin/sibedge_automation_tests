@@ -1,0 +1,30 @@
+pytest --showlocals # show local variables in tracebacks
+pytest -l           # show local variables (shortcut)
+
+pytest --tb=auto    # (default) 'long' tracebacks for the first and last
+                     # entry, but 'short' style for the other entries
+pytest --tb=long    # exhaustive, informative traceback formatting
+pytest --tb=short   # shorter traceback format
+pytest --tb=line    # only one line per failure
+pytest --tb=native  # Python standard library formatting
+pytest --tb=no      # no traceback at all
+
+The -r flag can be used to display a “short test summary info” at the end of the test session
+
+
+Python comes with a builtin Python debugger called PDB. pytest allows one to drop into the PDB prompt via a command line option:
+-- pytest --pdb
+
+To create result files which can be read by Jenkins or other Continuous integration servers, use this invocation:
+-- pytest --junitxml=path
+
+
+
+Creating a URL for each test failure:
+
+pytest --pastebin=failed
+This will submit test run information to a remote Paste service and provide a URL for each failure. You may select tests as usual or add for example -x if you only want to send one particular failure.
+
+Creating a URL for a whole test session log:
+
+--  pytest --pastebin=all

@@ -5,13 +5,14 @@ from selenium.webdriver import Remote as RemoteWebDriver
 import pytest
 from .locators import ModelsPageLocators, ProjectsPageLocators, ClientsPageLocators,\
     ContactsPageLocators, DevelopmentPageLocators, QaPageLocators, DevopsPageLocators,\
-    RdPageLocators, WhySibedgePageLocators, PressPageLocators, BlogPageLocators, MainPageLocators, \
-    SubscribeToUsFormLocators, GetInTouchFormLocators, SitemapLocators, TeamExtensionLocators
+    WhySibedgePageLocators, PressPageLocators, BlogPageLocators, MainPageLocators, \
+    SubscribeToUsFormLocators, GetInTouchFormLocators, SitemapLocators, TeamExtensionLocators, SquadsProductLocators
 
-link = "https://se.sibedge.com/en/"
+#@pytest.mark.parametrize('language', ["en", "ru"])
+link = "https://se.sibedge.com/"
 
 class MainPage(BasePage):
-    """This class contains methods for opening pages/elements and asserts"""
+    """This class contains methods for opening pages/elements + asserts"""
 
     def open_about_us_list(self):
         about_us = self.driver.find_element(By.CSS_SELECTOR, ".nav__item:nth-of-type(2) .nav__item-link")
@@ -45,6 +46,8 @@ class MainPage(BasePage):
         clients.click()
         assert self.is_element_present(
             *ClientsPageLocators.CLIENTS_HEADER), "Clients header is not presented. Check test results."
+        assert self.is_element_present(
+            *ClientsPageLocators.CLIENTS_TITLE), "Clients title is not presented. Check test result"
 
     def open_contacts_page(self):
         contacts = self.driver.find_element(By.CSS_SELECTOR,
@@ -53,6 +56,8 @@ class MainPage(BasePage):
         contacts.click()
         assert self.is_element_present(
             *ContactsPageLocators.CONTACTS_HEADER), "Contacts page header is not presented. Check test results."
+        assert self.is_element_present(
+            *ContactsPageLocators.CONTACTS_ADRESSES_LIST), "Contacts Adresses List is not present. Check test results."
 
     def open_development_page(self):
         self.open_services_list()
@@ -61,7 +66,7 @@ class MainPage(BasePage):
         )
         development_button.click()
         assert self.is_element_present(
-            *DevelopmentPageLocators.DEVELOPMENT_HEADER), "DEV page header is not presented. Check test results."
+            *DevelopmentPageLocators.DEVELOPMENT_HEADER), "Dev service page header is not presented. Check test results."
 
     def open_qa_page(self):
         self.open_services_list()
@@ -81,16 +86,25 @@ class MainPage(BasePage):
         assert self.is_element_present(
             *DevopsPageLocators.DEVOPS_HEADER), "Devops page header is not presented. Check test results."
 
-    def open_r_d_page(self):
-        self.open_services_list()
-        rd_button = self.driver.find_element(By.CSS_SELECTOR,
-        'li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(4) > .nav__sub-menu-link'
-        )
-        rd_button.click()
-        assert self.is_element_present(
-            *RdPageLocators.RD_HEADER), "R&D header is not presented. Check test results."
+    #def open_r_d_page(self):
+        #self.open_services_list()
+        #rd_button = self.driver.find_element(By.CSS_SELECTOR,
+        #'li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(4) > .nav__sub-menu-link'
+        #)
+        #rd_button.click()
+        #assert self.is_element_present(
+            #*RdPageLocators.RD_HEADER), "R&D header is not presented. Check test results."\
 
-    def open_team_extension(self):
+    def open_squads_product_page(self):
+        self.open_services_list()
+        squads_product_button = self.driver.find_element(By.CSS_SELECTOR,
+        "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link"
+        )
+        squads_product_button.click()
+        assert self.is_element_present(
+            *SquadsProductLocators.SQUADS_PRODUCT_HEADER), "Squads product page header is not present."
+
+    def open_team_extension_page(self):
         self.open_services_list()
         team_extension_button = self.driver.find_element(By.CSS_SELECTOR,
         "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link"
@@ -111,7 +125,6 @@ class MainPage(BasePage):
         logo.click()
         url = "https://se.sibedge.com/en/"
         assert url == MainPageLocators.MAIN_URL
-        assert self.is_element_present(*MainPageLocators.FEEDBACK_FORM), "Feedback form is not present. Check test results"
 
     def open_get_in_touch_form(self):
         get_in_touch_button = self.driver.find_element(By.CSS_SELECTOR,

@@ -11,24 +11,26 @@ class ProjectsPageLocators():
 
 class ClientsPageLocators():
     CLIENTS_HEADER = (By.CSS_SELECTOR, ".redesign-header__subtitle-text")
+    CLIENTS_TITLE = (By.CSS_SELECTOR, ".redesign-header__title")
 
 class ContactsPageLocators():
     CONTACTS_HEADER = (By.CSS_SELECTOR, ".redesign-discuss-project-content__contacts-second > .redesign-discuss-project-content__contacts-second-title")
+    CONTACTS_ADRESSES_LIST = (By.CSS_SELECTOR, ".redesign-contacts-representation > .js--container-elements.redesign-contacts-representation-list")
 
 class DevelopmentPageLocators():
-    DEVELOPMENT_HEADER = (By.CSS_SELECTOR, ".services-item__desc > .contain-within.contain-within--half.js--emulate-margin-left.services-item__desc-title.services-item__desc-title--huge")
+    DEVELOPMENT_HEADER = (By.CSS_SELECTOR, ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
 
 class QaPageLocators():
-    QA_HEADER = (By.CSS_SELECTOR, ".services-item__desc > .contain-within.contain-within--half.js--emulate-margin-left.services-item__desc-title.services-item__desc-title--huge")
+    QA_HEADER = (By.CSS_SELECTOR, ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
 
 class DevopsPageLocators():
-    DEVOPS_HEADER = (By.CSS_SELECTOR, ".services-item__desc > .contain-within.contain-within--half.js--emulate-margin-left.services-item__desc-title.services-item__desc-title--huge")
+    DEVOPS_HEADER = (By.CSS_SELECTOR, ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
 
-class RdPageLocators():
-    RD_HEADER = (By.CSS_SELECTOR, ".services-item__desc > .contain-within.contain-within--half.js--emulate-margin-left.services-item__desc-title.services-item__desc-title--huge")
+class SquadsProductLocators():
+    SQUADS_PRODUCT_HEADER = (By.CSS_SELECTOR, "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link")
 
 class TeamExtensionLocators():
-    TEAMEXTENSION_HEADER = (By.CSS_SELECTOR, ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
+    TEAMEXTENSION_HEADER = (By.CSS_SELECTOR, ".redesign-header__title-highlight")
 
 class WhySibedgePageLocators():
     WHYSIBEDGE_HEADER = (By.CSS_SELECTOR, "header > .redesign-header__title")
@@ -41,7 +43,6 @@ class BlogPageLocators():
 
 class MainPageLocators():
     MAIN_URL = ("https://se.sibedge.com/en/")
-    FEEDBACK_FORM = (By.CSS_SELECTOR, ".redesign-discuss-project")
 
 class SubscribeToUsFormLocators():
     SUBSCRIBETOUS_HEADER = (By.CSS_SELECTOR, ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] > .feedback-form__title")
