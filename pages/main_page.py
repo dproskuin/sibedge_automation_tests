@@ -8,8 +8,7 @@ from .locators import ModelsPageLocators, ProjectsPageLocators, ClientsPageLocat
     WhySibedgePageLocators, PressPageLocators, BlogPageLocators, MainPageLocators, \
     SubscribeToUsFormLocators, GetInTouchFormLocators, SitemapLocators, TeamExtensionLocators, SquadsProductLocators
 
-#@pytest.mark.parametrize('language', ["en", "ru"])
-link = "https://se.sibedge.com/"
+link = "https://se.sibedge.com/en/"
 
 class MainPage(BasePage):
     """This class contains methods for opening pages/elements + asserts"""
@@ -85,15 +84,6 @@ class MainPage(BasePage):
         devops_button.click()
         assert self.is_element_present(
             *DevopsPageLocators.DEVOPS_HEADER), "Devops page header is not presented. Check test results."
-
-    #def open_r_d_page(self):
-        #self.open_services_list()
-        #rd_button = self.driver.find_element(By.CSS_SELECTOR,
-        #'li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(4) > .nav__sub-menu-link'
-        #)
-        #rd_button.click()
-        #assert self.is_element_present(
-            #*RdPageLocators.RD_HEADER), "R&D header is not presented. Check test results."\
 
     def open_squads_product_page(self):
         self.open_services_list()
@@ -177,7 +167,7 @@ class MainPage(BasePage):
             *SubscribeToUsFormLocators.SUBSCRIBETOUS_HEADER), "Subscribe to us header is not presented. Check test results."
 
     def open_sitemap_page(self):
-        sitemap_link = "https://dev.sibedge.com/sitemap/"
+        sitemap_link = "https://se.sibedge.com/sitemap/"
         self.driver.get(sitemap_link)
         assert self.is_element_present(*SitemapLocators.SITEMAP_HEADER), "Sitemap header is not presented."
 

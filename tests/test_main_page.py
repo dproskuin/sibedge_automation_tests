@@ -52,11 +52,6 @@ def test_user_can_go_to_squads_product_page(driver):
     page.accept_cookie()
     page.open_squads_product_page()
 
-#def test_user_can_go_to_r_d_page(driver):
-    #page = MainPage(driver, link)
-    #page.open()
-    #page.accept_cookie()
-    #page.open_r_d_page()
 
 def test_user_can_go_to_main_page_by_clicking_to_logo(driver):
     page = MainPage(driver, link)
