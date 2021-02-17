@@ -1,6 +1,15 @@
 from pages.main_page import MainPage, link
 import pytest
-"""Here are located all test cases, type 'pytest -v -m test_main_page.py' in terminal to start"""
+
+"""
+Here are located all test cases, type 'pytest -v -m test_main_page.py' in command line to execute test cases  
+
+Parameters:
+
+Choose browser language: --browser_language=[ru]/[en]  
+Create .html report: --html=[path/name].html --self-contained-html --capture sys for capturing output
+
+"""
 
 
 
@@ -104,12 +113,6 @@ def test_open_sitemap_page(driver):
     page.open_sitemap_page()
 
 
-@pytest.mark.parametrize('language', ["en", "ru"])
-def test_user_should_see_en_and_ru_pages(driver, language):
-    link = f"https://sibedge.com/{language}/"
-    driver.get(link)
-    url = driver.current_url
-    assert url == link, "URL не совпадают!"
 
 
 

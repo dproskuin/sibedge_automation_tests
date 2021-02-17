@@ -18,14 +18,14 @@ def driver(request):
         print('\nStart browser for test...')
         options = webdriver.ChromeOptions()
         options.add_argument('--lang=ru')
-        driver = webdriver.Chrome(chrome_options=options)
+        driver = webdriver.Chrome(options=options)
 
     elif browser_language == "en":
 
         print('\nStart browser for test...')
         options = webdriver.ChromeOptions()
         options.add_argument('--lang=en')
-        driver = webdriver.Chrome(chrome_options=options)
+        driver = webdriver.Chrome(options=options)
 
     else:
         raise pytest.UsageError("--browser_language is invalid, supported languages: en, ru")
