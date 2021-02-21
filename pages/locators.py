@@ -57,6 +57,8 @@ class MainPageLocators():
 
     MAIN_URL = ("https://se.sibedge.com/en/")
 
+    HEADER_FORM_BUTTON = ".header__mail-button > .header__mail-button-text"
+
 class SubscribeToUsFormLocators():
 
     SUBSCRIBETOUS_HEADER = (By.CSS_SELECTOR, ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] > .feedback-form__title")
@@ -71,14 +73,15 @@ class SitemapLocators():
 
 class FeedbackFormLocators(): #geintouch
 
-    NAME_FIELD = (By.NAME, "user_name")
+    NAME_FIELD = "user_name"
 
-    PHONE_FIELD = (By.NAME, "user_phone")
+    PHONE_FIELD = "user_phone"
 
-    EMAIL_FIELD = (By.NAME, "user_email")
+    EMAIL_FIELD = "user_email"
 
-    MESSAGE_FIELD = (By.NAME, "MESSAGE") #Company field has the same name, ask to change
+    MESSAGE_FIELD = "MESSAGE" #Company field has the same name, ask to change
 
-    LAST_NAME_FIELD = (By.NAME, "user_last_name")
+    LAST_NAME_FIELD = "user_last_name"
 
-    SUBMIT_BUTTON = (By.NAME, "submit")
+    SUBMIT_BUTTON = "submit"
+

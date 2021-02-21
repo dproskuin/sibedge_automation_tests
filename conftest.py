@@ -18,6 +18,7 @@ def driver(request):
         print('\nStart browser for test...')
         options = webdriver.ChromeOptions()
         options.add_argument('--lang=ru')
+        options.add_argument('--start-maximized')
         driver = webdriver.Chrome(options=options)
 
     elif browser_language == "en":
@@ -25,6 +26,7 @@ def driver(request):
         print('\nStart browser for test...')
         options = webdriver.ChromeOptions()
         options.add_argument('--lang=en')
+        options.add_argument('--start-maximized')
         driver = webdriver.Chrome(options=options)
 
     else:
