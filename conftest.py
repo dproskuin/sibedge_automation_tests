@@ -10,7 +10,6 @@ def pytest_addoption(parser):
 
 @pytest.fixture(autouse=True, scope='function')
 def driver(request):
-    global driver
     browser_language = request.config.getoption("browser_language")
 
     if browser_language == "ru":
@@ -20,6 +19,9 @@ def driver(request):
         options.add_argument('--lang=ru')
         options.add_argument('--start-maximized')
         options.add_argument('--user-agent="test_agent"')
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
         driver = webdriver.Chrome(options=options)
 
     elif browser_language == "en":
@@ -29,6 +31,9 @@ def driver(request):
         options.add_argument('--lang=en')
         options.add_argument('--start-maximized')
         options.add_argument('--user-agent="test_agent"')
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
         driver = webdriver.Chrome(options=options)
 
     else:
