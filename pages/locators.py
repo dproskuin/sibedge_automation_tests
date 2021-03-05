@@ -85,3 +85,5 @@ class FeedbackFormLocators(): #geintouch
 
     SUBMIT_BUTTON = "submit"
 
+    THANK_YOU_NOTICE_MESSAGE = "feedback-form__notice"
+

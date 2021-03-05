@@ -3,8 +3,9 @@ from selenium.webdriver.common.by import By
 from .locators import FeedbackFormLocators, MainPageLocators
 import pytest
 import time
+from datetime import datetime
 
-link = "https://se.sibedge.com/en/"
+link = "https://se.sibedge.com/clients/"
 
 class FeedBackForms(BasePage):
 
@@ -21,22 +22,23 @@ class FeedBackForms(BasePage):
 
         name = self.driver.find_element(By.NAME, FeedbackFormLocators.NAME_FIELD)
         name.click()
-        name.send_keys("SomeTestName")
-        time.sleep(2)
+        name.send_keys('TestName')
 
         email = self.driver.find_element(By.NAME, FeedbackFormLocators.EMAIL_FIELD)
-        email.click()
-        email.send_keys("testemail@email.com")
+        email.send_keys("testemail@email.com") #element is not interactable because of under placed another same name element
 
         phone = self.driver.find_element(By.NAME, FeedbackFormLocators.PHONE_FIELD)
-        phone.click()
         phone.send_keys("+79513454323")
 
         message = self.driver.find_element(By.NAME, FeedbackFormLocators.MESSAGE_FIELD)
-        message.click()
         message.send_keys("Hello! This is the automated test message for Message field. Have a good day!")
 
         send_button = self.driver.find_element(By.NAME, FeedbackFormLocators.SUBMIT_BUTTON)
         send_button.click()
 
+        thank_you_notice = self.driver.find_element(By.CLASS_NAME, FeedbackFormLocators.THANK_YOU_NOTICE_MESSAGE)
+
+        assert thank_you_notice != 0
+
         time.sleep(5)
+

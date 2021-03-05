@@ -1,8 +1,8 @@
 from pages.main_page import MainPage, link
 import pytest
-
+import allure
 """
-Here are located all test cases, type 'pytest -v -m test_main_page.py' in command line to execute test cases  
+Here are located all test cases, type 'pytest -v test_main_page.py' in command line to execute test cases  
 
 Parameters:
 
