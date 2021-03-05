@@ -1,0 +1,22 @@
+version: '3.5'
+
+x-logging-rules: &logging-rules
+  logging:
+    driver: "json-file"
+    options:
+      max-size: 20m
+      max-file: "5"
+
+networks:
+  backend:
+    driver: ${NETWORKS_DRIVER}
+
+services:
+  ### UI-tests runner ##############################################
+  uirunner:
+    build: .
+    container_name: uirunner    
+    command: sleep 1200
+    networks:
+      - backend    
+    <<: *logging-rules

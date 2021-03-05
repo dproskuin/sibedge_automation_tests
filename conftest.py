@@ -19,6 +19,9 @@ def driver(request):
         options = webdriver.ChromeOptions()
         options.add_argument('--lang=ru')
         options.add_argument('--start-maximized')
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
         driver = webdriver.Chrome(options=options)
 
     elif browser_language == "en":
@@ -27,6 +30,9 @@ def driver(request):
         options = webdriver.ChromeOptions()
         options.add_argument('--lang=en')
         options.add_argument('--start-maximized')
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
         driver = webdriver.Chrome(options=options)
 
     else:
