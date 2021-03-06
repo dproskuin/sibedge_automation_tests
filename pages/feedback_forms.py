@@ -1,12 +1,12 @@
-from .base_page import BasePage
-from selenium.webdriver.common.by import By
-from .locators import FeedbackFormLocators, MainPageLocators
-import pytest
 import time
-from datetime import datetime
+from selenium.webdriver.common.by import By
+from .base_page import BasePage
+from .locators import FeedbackFormLocators, MainPageLocators
 
-link = "https://se.sibedge.com/clients/"
 
+LINK = "https://se.sibedge.com/clients/"
+
+"""This class describes methods for interaction with Feedback forms"""
 class FeedBackForms(BasePage):
 
     def accept_cookie(self):
@@ -25,20 +25,20 @@ class FeedBackForms(BasePage):
         name.send_keys('TestName')
 
         email = self.driver.find_element(By.NAME, FeedbackFormLocators.EMAIL_FIELD)
-        email.send_keys("testemail@email.com") #element is not interactable because of under placed another same name element
+        email.send_keys("testemail@email.com")
 
         phone = self.driver.find_element(By.NAME, FeedbackFormLocators.PHONE_FIELD)
         phone.send_keys("+79513454323")
 
         message = self.driver.find_element(By.NAME, FeedbackFormLocators.MESSAGE_FIELD)
-        message.send_keys("Hello! This is the automated test message for Message field. Have a good day!")
+        message.send_keys("Hello. Have a good day!")
 
         send_button = self.driver.find_element(By.NAME, FeedbackFormLocators.SUBMIT_BUTTON)
         send_button.click()
 
-        thank_you_notice = self.driver.find_element(By.CLASS_NAME, FeedbackFormLocators.THANK_YOU_NOTICE_MESSAGE)
+        thank_you_notice = self.driver.find_element(
+            By.CLASS_NAME, FeedbackFormLocators.THANK_YOU_NOTICE_MESSAGE
+        )
 
         assert thank_you_notice != 0
-
         time.sleep(5)
-

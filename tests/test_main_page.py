@@ -1,17 +1,13 @@
-from pages.main_page import MainPage, link
-import pytest
 import allure
+from pages.main_page import MainPage, link
 """
-Here are located all test cases, type 'pytest -v test_main_page.py' in command line to execute test cases  
-
+Here are located all test cases, type 'pytest -v test_main_page.py' 
+in command line to execute test cases  
 Parameters:
-
 Choose browser language: --browser_language=[ru]/[en]  
-Create .html report: --html=[path/name].html --self-contained-html --capture sys for capturing output
-
+Create .html report: --html=[path/name].html --self-contained-html --capture sys 
+for capturing output
 """
-
-
 
 def test_user_can_go_to_models_page(driver):
     page = MainPage(driver, link)
@@ -111,9 +107,3 @@ def test_open_sitemap_page(driver):
     page.open()
     page.accept_cookie()
     page.open_sitemap_page()
-
-
-
-
-
-

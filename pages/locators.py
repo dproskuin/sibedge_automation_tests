@@ -1,5 +1,8 @@
 from selenium.webdriver.common.by import By
-"""Here are located locators for elements. Structure - Page (class) -> Locator for element (constant) """
+"""
+Here are located locators for elements. 
+Structure - Page (class) -> Locator for element (constant) 
+"""
 
 
 
@@ -18,7 +21,10 @@ class ClientsPageLocators():
 
 class ContactsPageLocators():
 
-    CONTACTS_HEADER = (By.CSS_SELECTOR, ".redesign-discuss-project-content__contacts-second > .redesign-discuss-project-content__contacts-second-title")
+    CONTACTS_HEADER = (By.CSS_SELECTOR,
+    ".redesign-discuss-project-content__contacts-second > .redesign-discuss-project-content__contacts-second-title"
+     )
+
     CONTACTS_ADRESSES_LIST = (By.CSS_SELECTOR, ".redesign-contacts-representation > .js--container-elements.redesign-contacts-representation-list")
 
 class DevelopmentPageLocators():
@@ -86,4 +92,3 @@ class FeedbackFormLocators(): #geintouch
     SUBMIT_BUTTON = "submit"
 
     THANK_YOU_NOTICE_MESSAGE = "feedback-form__notice"
-
