@@ -1,14 +1,12 @@
-from .base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver import Remote as RemoteWebDriver
-import pytest
+from .base_page import BasePage
 from .locators import ModelsPageLocators, ProjectsPageLocators, ClientsPageLocators,\
     ContactsPageLocators, DevelopmentPageLocators, QaPageLocators, DevopsPageLocators,\
     WhySibedgePageLocators, PressPageLocators, BlogPageLocators, MainPageLocators, \
     SubscribeToUsFormLocators, GetInTouchFormLocators, SitemapLocators, TeamExtensionLocators, SquadsProductLocators
 
-link = "https://se.sibedge.com/en/"
+LINK = "https://se.sibedge.com/en/"
 
 class MainPage(BasePage):
     """This class contains methods for opening pages/elements + asserts"""
@@ -169,24 +167,5 @@ class MainPage(BasePage):
     def open_sitemap_page(self):
         sitemap_link = "https://se.sibedge.com/sitemap/"
         self.driver.get(sitemap_link)
+
         assert self.is_element_present(*SitemapLocators.SITEMAP_HEADER), "Sitemap header is not presented."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

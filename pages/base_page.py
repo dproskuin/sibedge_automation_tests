@@ -1,7 +1,5 @@
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
+"""This module describes Basic page methods (Page object)"""
 from selenium.webdriver import Remote as RemoteWebDriver
-import pytest
 from selenium.common.exceptions import NoSuchElementException
 
 

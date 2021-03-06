@@ -1,5 +1,5 @@
 import allure
-from pages.main_page import MainPage, link
+from pages.main_page import MainPage, LINK
 """
 Here are located all test cases, type 'pytest -v test_main_page.py' 
 in command line to execute test cases  

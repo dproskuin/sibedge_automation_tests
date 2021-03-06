@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-from pages.base_page import BasePage
 
 
 
@@ -42,5 +41,3 @@ def driver(request):
     yield driver
     print('\nquit browser..')
     driver.quit()
-
-
