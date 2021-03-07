@@ -1,7 +1,4 @@
-from pages.feedback_forms import FeedBackForms, link
-import pytest
-from datetime import datetime
-import time
+from pages.feedback_forms import FeedBackForms, LINK
 
 
 def test_send_write_to_us_form(driver):
