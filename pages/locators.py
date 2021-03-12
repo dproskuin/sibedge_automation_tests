@@ -15,8 +15,8 @@ class ProjectsPageLocators:
 
 class ClientsPageLocators:
     CLIENTS_HEADER = (By.CSS_SELECTOR, ".redesign-header__subtitle-text")
-    CLIENTS_TITLE = (By.CSS_SELECTOR, ".redesign-header__title")
 
+    CLIENTS_TITLE = (By.CSS_SELECTOR, ".redesign-header__title")
 
 class ContactsPageLocators:
     CONTACTS_HEADER = (By.CSS_SELECTOR,
@@ -29,8 +29,8 @@ class ContactsPageLocators:
 
 class DevelopmentPageLocators:
     DEVELOPMENT_HEADER = (By.CSS_SELECTOR,
-                          ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
-
+                          ".contain-within.redesign-header.redesign-page__header > .redesign-header__title"
+                          )
 
 class QaPageLocators:
     QA_HEADER = (By.CSS_SELECTOR,
@@ -70,12 +70,6 @@ class MainPageLocators:
 
     SUBSCRIBE_TO_US_BUTTON = "li:nth-of-type(2) > .nav__sub-menu > li:nth-of-type(5) > .nav__sub-menu-link"
 
-
-class SubscribeToUsFormLocators:
-    SUBSCRIBETOUS_HEADER = (By.CSS_SELECTOR,
-                            ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] > .feedback-form__title")
-
-
 class GetInTouchFormLocators:
     GETINTOUCH_HEADER = (By.CSS_SELECTOR,
                          ".feedback-form.js--feedback-form.js--form.visible > form[method='post'] > .feedback-form__title")
@@ -86,19 +80,36 @@ class SitemapLocators:
                       ".contain-within.sitemap-container > .sitemap-container-header")
 
 
-class FeedbackFormLocators:
-    NAME_FIELD = "user_name"
+class SubscribeFormLocators:
+    NAME_FIELD = "feedback_user_namesubscribe"
 
-    PHONE_FIELD = "user_phone"
+    EMAIL_FIELD = "feedback_user_emailsubscribe"
 
-    EMAIL_FIELD = "user_email"
+    MESSAGE_FIELD = "feedback_message_companysubscribe"
 
-    MESSAGE_FIELD = "MESSAGE"
-
-    LAST_NAME_FIELD = "user_last_name"
-
-    SUBMIT_BUTTON = "submit"
+    SEND_BUTTON = "submit"
 
     THANK_YOU_NOTICE_MESSAGE = "feedback-form__notice"
 
     SUBSCRIBE_TO_US = "nav__sub-menu-link js--form-open"
+
+    CAPTCHA = "recaptcha-anchor-label"
+
+class WriteToUsFormLocators:
+    NAME_FIELD = "feedback_user_namefooter"
+
+    EMAIL_FIELD = "feedback_user_emailfooter"
+
+    COMPANY_FIELD = "feedback_message_companyfooter"
+
+    PHONE_FIELD = "feedback_user_phonefooter"
+
+    MESSAGE_FIELD = "feedback_messagefooter"
+
+    SEND_BUTTON = "submit"
+
+    THANK_YOU_NOTICE_MESSAGE = "feedback-form__inner feedback-form__inner--success"
+
+
+
+
