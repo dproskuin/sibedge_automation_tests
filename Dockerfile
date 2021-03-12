@@ -7,7 +7,7 @@ RUN apt-get -y update
 RUN apt-get install -y google-chrome-stable
 
 # install chromedriver
-ENV CHROMEDRIVER_VERSION 2.19
+ENV CHROMEDRIVER_VERSION=89.0.4389.23
 
 RUN apt-get install -yqq unzip
 RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
