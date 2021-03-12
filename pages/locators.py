@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
-"""
-Here are located locators for elements. 
-Structure - Page (class) -> Locator for element (constant) 
+"""Here are located locators for elements.
+Structure - Page (class) -> Locator for element (constant)
 """
 
 
@@ -25,23 +24,28 @@ class ContactsPageLocators():
     ".redesign-discuss-project-content__contacts-second > .redesign-discuss-project-content__contacts-second-title"
      )
 
-    CONTACTS_ADRESSES_LIST = (By.CSS_SELECTOR, ".redesign-contacts-representation > .js--container-elements.redesign-contacts-representation-list")
+    CONTACTS_ADRESSES_LIST = (By.CSS_SELECTOR,
+    ".redesign-contacts-representation > .js--container-elements.redesign-contacts-representation-list")
 
 class DevelopmentPageLocators():
 
-    DEVELOPMENT_HEADER = (By.CSS_SELECTOR, ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
+    DEVELOPMENT_HEADER = (By.CSS_SELECTOR,
+    ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
 
 class QaPageLocators():
 
-    QA_HEADER = (By.CSS_SELECTOR, ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
+    QA_HEADER = (By.CSS_SELECTOR,
+    ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
 
 class DevopsPageLocators():
 
-    DEVOPS_HEADER = (By.CSS_SELECTOR, ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
+    DEVOPS_HEADER = (By.CSS_SELECTOR,
+    ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
 
 class SquadsProductLocators():
 
-    SQUADS_PRODUCT_HEADER = (By.CSS_SELECTOR, "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link")
+    SQUADS_PRODUCT_HEADER = (By.CSS_SELECTOR,
+    "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link")
 
 class TeamExtensionLocators():
 
@@ -61,23 +65,28 @@ class BlogPageLocators():
 
 class MainPageLocators():
 
-    MAIN_URL = ("https://se.sibedge.com/en/")
+    MAIN_URL = "https://se.sibedge.com/en/"
 
     HEADER_FORM_BUTTON = ".header__mail-button > .header__mail-button-text"
 
+    SUBSCRIBE_TO_US_BUTTON = "li:nth-of-type(2) > .nav__sub-menu > li:nth-of-type(5) > .nav__sub-menu-link"
+
 class SubscribeToUsFormLocators():
 
-    SUBSCRIBETOUS_HEADER = (By.CSS_SELECTOR, ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] > .feedback-form__title")
+    SUBSCRIBETOUS_HEADER = (By.CSS_SELECTOR,
+    ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] > .feedback-form__title")
 
 class GetInTouchFormLocators():
 
-    GETINTOUCH_HEADER = (By.CSS_SELECTOR, ".feedback-form.js--feedback-form.js--form.visible > form[method='post'] > .feedback-form__title")
+    GETINTOUCH_HEADER = (By.CSS_SELECTOR,
+    ".feedback-form.js--feedback-form.js--form.visible > form[method='post'] > .feedback-form__title")
 
 class SitemapLocators():
 
-    SITEMAP_HEADER = (By.CSS_SELECTOR, ".contain-within.sitemap-container > .sitemap-container-header")
+    SITEMAP_HEADER = (By.CSS_SELECTOR,
+    ".contain-within.sitemap-container > .sitemap-container-header")
 
-class FeedbackFormLocators(): #geintouch
+class FeedbackFormLocators():
 
     NAME_FIELD = "user_name"
 
@@ -85,10 +94,12 @@ class FeedbackFormLocators(): #geintouch
 
     EMAIL_FIELD = "user_email"
 
-    MESSAGE_FIELD = "MESSAGE" #Company field has the same name, ask to change
+    MESSAGE_FIELD = "MESSAGE"
 
     LAST_NAME_FIELD = "user_last_name"
 
     SUBMIT_BUTTON = "submit"
 
     THANK_YOU_NOTICE_MESSAGE = "feedback-form__notice"
+
+    SUBSCRIBE_TO_US = "nav__sub-menu-link js--form-open"

@@ -4,7 +4,8 @@ from .base_page import BasePage
 from .locators import ModelsPageLocators, ProjectsPageLocators, ClientsPageLocators,\
     ContactsPageLocators, DevelopmentPageLocators, QaPageLocators, DevopsPageLocators,\
     WhySibedgePageLocators, PressPageLocators, BlogPageLocators, MainPageLocators, \
-    SubscribeToUsFormLocators, GetInTouchFormLocators, SitemapLocators, TeamExtensionLocators, SquadsProductLocators
+    SubscribeToUsFormLocators, GetInTouchFormLocators, SitemapLocators, TeamExtensionLocators, \
+    SquadsProductLocators
 
 LINK = "https://se.sibedge.com/en/"
 
@@ -26,7 +27,7 @@ class MainPage(BasePage):
             ".header__nav.js--header-nav > .nav > li:nth-of-type(4) > .nav__item-link"
         )
         models.click()
-        assert self.is_element_present(*ModelsPageLocators.MODELS_HEADER), "Models header is not presented. Check test results."
+        assert self.is_element_present(*ModelsPageLocators.MODELS_HEADER), "Models header is not presented."
 
     def open_projects_page(self):
         projects = self.driver.find_element(By.CSS_SELECTOR,
@@ -52,9 +53,9 @@ class MainPage(BasePage):
         )
         contacts.click()
         assert self.is_element_present(
-            *ContactsPageLocators.CONTACTS_HEADER), "Contacts page header is not presented. Check test results."
+            *ContactsPageLocators.CONTACTS_HEADER), "Contacts page header is not presented."
         assert self.is_element_present(
-            *ContactsPageLocators.CONTACTS_ADRESSES_LIST), "Contacts Adresses List is not present. Check test results."
+            *ContactsPageLocators.CONTACTS_ADRESSES_LIST), "Contacts Adresses List is not present."
 
     def open_development_page(self):
         self.open_services_list()
@@ -63,7 +64,7 @@ class MainPage(BasePage):
         )
         development_button.click()
         assert self.is_element_present(
-            *DevelopmentPageLocators.DEVELOPMENT_HEADER), "Dev service page header is not presented. Check test results."
+            *DevelopmentPageLocators.DEVELOPMENT_HEADER), "Dev service page header is not presented."
 
     def open_qa_page(self):
         self.open_services_list()
@@ -81,7 +82,7 @@ class MainPage(BasePage):
         )
         devops_button.click()
         assert self.is_element_present(
-            *DevopsPageLocators.DEVOPS_HEADER), "Devops page header is not presented. Check test results."
+            *DevopsPageLocators.DEVOPS_HEADER), "Devops header is not presented."
 
     def open_squads_product_page(self):
         self.open_services_list()
@@ -90,7 +91,7 @@ class MainPage(BasePage):
         )
         squads_product_button.click()
         assert self.is_element_present(
-            *SquadsProductLocators.SQUADS_PRODUCT_HEADER), "Squads product page header is not present."
+            *SquadsProductLocators.SQUADS_PRODUCT_HEADER), "Squads header is not present."
 
     def open_team_extension_page(self):
         self.open_services_list()
@@ -99,7 +100,7 @@ class MainPage(BasePage):
         )
         team_extension_button.click()
         assert self.is_element_present(
-            *TeamExtensionLocators.TEAMEXTENSION_HEADER), "Team Extension page header is not presented. Check test results."
+            *TeamExtensionLocators.TEAMEXTENSION_HEADER), "Team Extension header isn't presented"
 
     def accept_cookie(self):
         cookies_accept = self.driver.find_element(By.CSS_SELECTOR,
@@ -123,8 +124,8 @@ class MainPage(BasePage):
             *GetInTouchFormLocators.GETINTOUCH_HEADER), "Get in touch header is not presented!"
 
     def close_get_in_touch_form(self):
-        form_close_button = self.driver.find_element(By.CSS_SELECTOR,
-            ".feedback-form.js--feedback-form.js--form.visible > form[method='post']  .feedback-form__close.js--form-close > svg"
+        form_close_button = self.driver.find_element(By.CLASS_NAME,
+            "feedback-form__close js--form-close"
         )
         form_close_button.click()
 
@@ -135,7 +136,7 @@ class MainPage(BasePage):
         )
         why_sibedge.click()
         assert self.is_element_present(
-            *WhySibedgePageLocators.WHYSIBEDGE_HEADER), "Why sibedge header is not presented. Check test results."
+            *WhySibedgePageLocators.WHYSIBEDGE_HEADER), "<Why sibedge> header is not presented"
 
     def open_press_page(self):
         self.open_about_us_list()
@@ -162,10 +163,12 @@ class MainPage(BasePage):
         )
         subscribe_to_us.click()
         assert self.is_element_present(
-            *SubscribeToUsFormLocators.SUBSCRIBETOUS_HEADER), "Subscribe to us header is not presented. Check test results."
+            *SubscribeToUsFormLocators.SUBSCRIBETOUS_HEADER), "Element not presented"
 
     def open_sitemap_page(self):
         sitemap_link = "https://se.sibedge.com/sitemap/"
         self.driver.get(sitemap_link)
 
-        assert self.is_element_present(*SitemapLocators.SITEMAP_HEADER), "Sitemap header is not presented."
+        assert self.is_element_present(
+            *SitemapLocators.SITEMAP_HEADER
+        ), "Sitemap header is not presented."
