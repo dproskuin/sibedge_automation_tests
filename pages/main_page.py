@@ -50,7 +50,7 @@ class MainPage(BasePage):
     def open_contacts_page(self):
         contacts = self.driver.find_element(By.CSS_SELECTOR,
             ".header__nav.js--header-nav > .nav > li:nth-of-type(7) > .nav__item-link"
-        )
+                                            )
         contacts.click()
         assert self.is_element_present(
             *ContactsPageLocators.CONTACTS_HEADER), "Contacts page header is not presented."

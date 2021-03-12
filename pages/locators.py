@@ -5,20 +5,20 @@ Structure - Page (class) -> Locator for element (constant)
 
 
 
-class ModelsPageLocators():
+class ModelsPageLocators:
 
     MODELS_HEADER = (By.CSS_SELECTOR, ".redesign-header__title")
 
-class ProjectsPageLocators():
+class ProjectsPageLocators:
 
     PROJECTS_HEADER = (By.CSS_SELECTOR, ".redesign-header__title")
 
-class ClientsPageLocators():
+class ClientsPageLocators:
 
     CLIENTS_HEADER = (By.CSS_SELECTOR, ".redesign-header__subtitle-text")
     CLIENTS_TITLE = (By.CSS_SELECTOR, ".redesign-header__title")
 
-class ContactsPageLocators():
+class ContactsPageLocators:
 
     CONTACTS_HEADER = (By.CSS_SELECTOR,
     ".redesign-discuss-project-content__contacts-second > .redesign-discuss-project-content__contacts-second-title"
@@ -27,43 +27,43 @@ class ContactsPageLocators():
     CONTACTS_ADRESSES_LIST = (By.CSS_SELECTOR,
     ".redesign-contacts-representation > .js--container-elements.redesign-contacts-representation-list")
 
-class DevelopmentPageLocators():
+class DevelopmentPageLocators:
 
     DEVELOPMENT_HEADER = (By.CSS_SELECTOR,
     ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
 
-class QaPageLocators():
+class QaPageLocators:
 
     QA_HEADER = (By.CSS_SELECTOR,
     ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
 
-class DevopsPageLocators():
+class DevopsPageLocators:
 
     DEVOPS_HEADER = (By.CSS_SELECTOR,
     ".contain-within.redesign-header.redesign-page__header > .redesign-header__title")
 
-class SquadsProductLocators():
+class SquadsProductLocators:
 
     SQUADS_PRODUCT_HEADER = (By.CSS_SELECTOR,
     "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link")
 
-class TeamExtensionLocators():
+class TeamExtensionLocators:
 
     TEAMEXTENSION_HEADER = (By.CSS_SELECTOR, ".redesign-header__title-highlight")
 
-class WhySibedgePageLocators():
+class WhySibedgePageLocators:
 
     WHYSIBEDGE_HEADER = (By.CSS_SELECTOR, "header > .redesign-header__title")
 
-class PressPageLocators():
+class PressPageLocators:
 
     PRESS_HEADER = (By.CSS_SELECTOR, ".main-slider__title")
 
-class BlogPageLocators():
+class BlogPageLocators:
 
     BLOG_HEADER = (By.CSS_SELECTOR, ".redesign-header__title-highlight")
 
-class MainPageLocators():
+class MainPageLocators:
 
     MAIN_URL = "https://se.sibedge.com/en/"
 
@@ -71,22 +71,22 @@ class MainPageLocators():
 
     SUBSCRIBE_TO_US_BUTTON = "li:nth-of-type(2) > .nav__sub-menu > li:nth-of-type(5) > .nav__sub-menu-link"
 
-class SubscribeToUsFormLocators():
+class SubscribeToUsFormLocators:
 
     SUBSCRIBETOUS_HEADER = (By.CSS_SELECTOR,
     ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] > .feedback-form__title")
 
-class GetInTouchFormLocators():
+class GetInTouchFormLocators:
 
     GETINTOUCH_HEADER = (By.CSS_SELECTOR,
     ".feedback-form.js--feedback-form.js--form.visible > form[method='post'] > .feedback-form__title")
 
-class SitemapLocators():
+class SitemapLocators:
 
     SITEMAP_HEADER = (By.CSS_SELECTOR,
     ".contain-within.sitemap-container > .sitemap-container-header")
 
-class FeedbackFormLocators():
+class FeedbackFormLocators:
 
     NAME_FIELD = "user_name"
 
