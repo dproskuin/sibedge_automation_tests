@@ -1,15 +1,22 @@
 import allure
 from pages.main_page import MainPage, LINK
-"""
-Here are located all test cases, type 'pytest -v test_main_page.py' 
-in command line to execute test cases  
+"""Here are located test cases for site pages.
+
+Executing:
+
+Type 'pytest [filename] (test_main_page.py)'
+to the command line to execute test cases
+
 Parameters:
-Choose browser language: --browser_language=[ru]/[en]  
-Create .html report: --html=[path/name].html --self-contained-html --capture sys 
-for capturing output
-For creating allure report: 
-1) pytest -v -s --alluredir='dir' 'test_file.py' 
-3) allure serve 'dir'
+
+Choose browser language: --browser_language=[ru]/[en] 
+-v = verbose mode
+-m = run marked tests
+-s = string output
+
+Creating allure report:
+1) pytest --alluredir=[dir] [test_file.py]
+3) allure serve [dir].
 """
 
 @allure.severity(allure.severity_level.CRITICAL)
