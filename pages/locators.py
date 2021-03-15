@@ -87,13 +87,13 @@ class SubscribeFormLocators:
 
     MESSAGE_FIELD = "feedback_message_companysubscribe"
 
-    SEND_BUTTON = "submit"
+    SEND_BUTTON = ".feedback-form.js--email-subscribe-form.js--form.visible > form[method='post'] button[name='submit']"
 
     THANK_YOU_NOTICE_MESSAGE = "feedback-form__notice"
 
     SUBSCRIBE_TO_US = "nav__sub-menu-link js--form-open"
 
-    CAPTCHA = "recaptcha-anchor-label"
+    CAPTCHA = "#recaptcha-anchor [role='presentation']:nth-of-type(1)"
 
 class WriteToUsFormLocators:
     NAME_FIELD = "feedback_user_namefooter"
@@ -108,7 +108,7 @@ class WriteToUsFormLocators:
 
     SEND_BUTTON = "submit"
 
-    THANK_YOU_NOTICE_MESSAGE = "feedback-form__inner feedback-form__inner--success"
+    THANK_YOU_NOTICE_MESSAGE = "feedback-form__notice"
 
 
 
