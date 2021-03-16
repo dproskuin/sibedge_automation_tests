@@ -27,35 +27,20 @@ class FeedBackForms(BasePage):
     def open_about_us_and_form(self):
         about_us = self.driver.find_element(By.CSS_SELECTOR,
         ".nav__item:nth-of-type(2) .nav__item-link")
-        hover = ActionChains(self.driver).move_to_element(about_us)
-        hover.perform()
-        button = self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.SUBSCRIBE_TO_US_BUTTON)
-        button.click()
+        ActionChains(self.driver).move_to_element(about_us).perform()
+        self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.SUBSCRIBE_TO_US_BUTTON).click()
 
     def accept_cookie(self):
-        cookies_accept = self.driver.find_element(By.CSS_SELECTOR,
-        ".cookie-alert__button.cookie-alert__button--agree.js--cookie-alert-allow")
-        cookies_accept.click()
+        self.driver.find_element(By.CSS_SELECTOR,
+        ".cookie-alert__button.cookie-alert__button--agree.js--cookie-alert-allow").click()
 
     def open_and_send_write_to_us_form(self):
-        write_to_us_button = self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.HEADER_FORM_BUTTON)
-        write_to_us_button.click()
-
-        name = self.driver.find_element(By.ID, WriteToUsFormLocators.NAME_FIELD)
-        name.click()
-        name.send_keys('TestName')
-
-        email = self.driver.find_element(By.ID, WriteToUsFormLocators.EMAIL_FIELD)
-        email.send_keys("testemail@email.com")
-
-        phone = self.driver.find_element(By.ID, WriteToUsFormLocators.PHONE_FIELD)
-        phone.send_keys("+79513454323")
-
-        message = self.driver.find_element(By.ID, WriteToUsFormLocators.MESSAGE_FIELD)
-        message.send_keys("Hello. Have a good day!")
-
-        send_button = self.driver.find_element(By.NAME, WriteToUsFormLocators.SEND_BUTTON)
-        send_button.click()
+        self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.HEADER_FORM_BUTTON).click()
+        self.driver.find_element(By.ID, WriteToUsFormLocators.NAME_FIELD).send_keys('TestName')
+        self.driver.find_element(By.ID, WriteToUsFormLocators.EMAIL_FIELD).send_keys("testemail@email.com")
+        self.driver.find_element(By.ID, WriteToUsFormLocators.PHONE_FIELD).send_keys("+79513454323")
+        self.driver.find_element(By.ID, WriteToUsFormLocators.MESSAGE_FIELD).send_keys("Hello. Have a good day!")
+        self.driver.find_element(By.NAME, WriteToUsFormLocators.SEND_BUTTON).click()
 
         thank_you_notice = self.driver.find_element(
             By.CLASS_NAME, WriteToUsFormLocators.THANK_YOU_NOTICE_MESSAGE
@@ -64,17 +49,11 @@ class FeedBackForms(BasePage):
         assert thank_you_notice != 0
 
     def open_and_send_subscribe_to_us_form(self):
-        name = self.driver.find_element(By.ID, SubscribeFormLocators.NAME_FIELD)
-        name.send_keys('TestName')
-
-        email = self.driver.find_element(By.ID, SubscribeFormLocators.EMAIL_FIELD)
-        email.send_keys("testemail@email.com")
-
-        company = self.driver.find_element(By.ID, SubscribeFormLocators.MESSAGE_FIELD)
-        company.send_keys("Hello. Have a good day!")
+        self.driver.find_element(By.ID, SubscribeFormLocators.NAME_FIELD).send_keys('TestName')
+        self.driver.find_element(By.ID, SubscribeFormLocators.EMAIL_FIELD).send_keys("testemail@email.com")
+        self.driver.find_element(By.ID, SubscribeFormLocators.MESSAGE_FIELD).send_keys("Hello. Have a good day!")
         time.sleep(1)
-        send_button = self.driver.find_element(By.CSS_SELECTOR, SubscribeFormLocators.SEND_BUTTON)
-        send_button.click()
+        self.driver.find_element(By.CSS_SELECTOR, SubscribeFormLocators.SEND_BUTTON).click()
 
         thank_you_notice = self.driver.find_element(
             By.CLASS_NAME, SubscribeFormLocators.THANK_YOU_NOTICE_MESSAGE
@@ -85,15 +64,15 @@ class FeedBackForms(BasePage):
     def open_and_send_main_page_form(self):
         self.driver.get(LINKS_DICT["main_page"])
         self.accept_cookie()
-        name = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys("Testname")
-        last_name = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
-        email = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
-        phone = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys("Testname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
         time.sleep(1)
-        send = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
         assert "success" in self.driver.current_url
 
 
     def open_and_send_models_page_form(self):
-
+        self.driver.get(LINKS_DICT["models_page"])
