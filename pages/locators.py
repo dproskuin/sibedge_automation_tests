@@ -110,6 +110,24 @@ class WriteToUsFormLocators:
 
     THANK_YOU_NOTICE_MESSAGE = "feedback-form__notice"
 
+class BaseFeedbackFormLocators:
+    NAME_FIELD = "user_first_name"
+
+    LAST_NAME_FIELD = "user_last_name"
+
+    EMAIL_FIELD = "user_email"
+
+    COMPANY_FIELD = "user_company"
+
+    PHONE_FIELD = "user_phone"
+
+    #MESSAGE_FIELD = ""
+
+    SEND_BUTTON = "submit"
+
+    SUCCESS_MESSAGE = "form[method='post'] > .alert.alert--success.feedback-form__alert"
+
+
 
 
 

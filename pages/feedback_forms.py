@@ -2,11 +2,25 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from .base_page import BasePage
-from .locators import SubscribeFormLocators, MainPageLocators, WriteToUsFormLocators
+from .locators import SubscribeFormLocators, MainPageLocators, WriteToUsFormLocators,\
+    BaseFeedbackFormLocators
 
 """This class describes methods for interaction with Feedback forms"""
 
 LINK = "https://dev.sibedge.com/clients/"
+
+LINKS_DICT = {
+    "main_page":"https://dev.sibedge.com/",
+    "clients_page":"https://dev.sibedge.com/clients/",
+    "models_page":"https://dev.sibedge.com/models/",
+    "contacts_page":"https://dev.sibedge.com/contacts/",
+    "blog_page":"https://dev.sibedge.com/blog/",
+    "service_development_page":"https://dev.sibedge.com/services/development/",
+    "service_extension_page":"https://dev.sibedge.com/services/team-extension/",
+    "service_squads_page":"https://dev.sibedge.com/squads-product-development/",
+    "service_devops_page":"https://dev.sibedge.com/devops/",
+    "service_qa_page":"https://dev.sibedge.com/qa/",
+}
 
 class FeedBackForms(BasePage):
 
@@ -24,8 +38,8 @@ class FeedBackForms(BasePage):
         cookies_accept.click()
 
     def open_and_send_write_to_us_form(self):
-        button = self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.HEADER_FORM_BUTTON)
-        button.click()
+        write_to_us_button = self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.HEADER_FORM_BUTTON)
+        write_to_us_button.click()
 
         name = self.driver.find_element(By.ID, WriteToUsFormLocators.NAME_FIELD)
         name.click()
@@ -67,4 +81,19 @@ class FeedBackForms(BasePage):
         )
 
         assert thank_you_notice != 0
+
+    def open_and_send_main_page_form(self):
+        self.driver.get(LINKS_DICT["main_page"])
+        self.accept_cookie()
+        name = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys("Testname")
+        last_name = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        email = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        phone = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        time.sleep(1)
+        send = self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url
+
+
+    def open_and_send_models_page_form(self):
 
