@@ -39,5 +39,8 @@ def test_send_blog_page_form(driver):
     page = FeedBackForms(driver, LINK)
     page.open_and_send_blog_page_form()
 
+def test_send_development_service_form(driver):
 
+    page = FeedBackForms(driver, LINK)
+    page.open_and_send_development_service_form()
 

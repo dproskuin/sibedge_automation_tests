@@ -120,3 +120,16 @@ class FeedBackForms(BasePage):
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
         assert "success" in self.driver.current_url
+
+    def open_and_send_development_service_form(self):
+        self.driver.get(LINKS_DICT["service_development_page"])
+        self.accept_cookie()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys("Testname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys("Test-Company")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url
