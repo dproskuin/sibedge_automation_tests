@@ -19,5 +19,20 @@ def test_send_main_page_form(driver):
     page = FeedBackForms(driver, LINK)
     page.open_and_send_main_page_form()
 
+def test_send_models_page_form(driver):
+
+    page = FeedBackForms(driver, LINK)
+    page.open_and_send_models_page_form()
+
+def test_send_about_us_page_form(driver):
+
+    page = FeedBackForms(driver, LINK)
+    page.open_and_send_about_us_page_form()
+
+def test_send_contacts_page_form(driver):
+
+    page = FeedBackForms(driver, LINK)
+    page.open_and_send_contacts_page_form()
+
 
 
