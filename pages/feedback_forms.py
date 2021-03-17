@@ -110,3 +110,13 @@ class FeedBackForms(BasePage):
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
         assert "success" in self.driver.current_url
+
+    def open_and_send_blog_page_form(self):
+        self.driver.get(LINKS_DICT["blog_page"])
+        self.accept_cookie()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url
