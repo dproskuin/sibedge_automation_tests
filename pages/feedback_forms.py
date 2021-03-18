@@ -21,6 +21,9 @@ LINKS_DICT = {
     "service_devops_page": "https://dev.sibedge.com/devops/",
     "service_qa_page": "https://dev.sibedge.com/qa/",
     "about_us_page": "https:/dev.sibedge.com/about/",
+    "agile_article": "https://dev.sibedge.com/article/agile-and-squad-services/",
+    "pitfalls_article": "https://dev.sibedge.com/article/major-pitfalls/",
+    "cto_article": "https://dev.sibedge.com/article/ctos-reshape-it-priorities-to-overcome-crisis-mode/",
 }
 
 
@@ -73,7 +76,7 @@ class FeedBackForms(BasePage):
         time.sleep(1)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
-        assert "success" in self.driver.current_url
+        assert "success" in self.driver.current_url, "No 'success' in URL"
 
     def open_and_send_models_page_form(self):
         self.driver.get(LINKS_DICT["models_page"])
@@ -85,7 +88,7 @@ class FeedBackForms(BasePage):
         time.sleep(1)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
-        assert "success" in self.driver.current_url
+        assert "success" in self.driver.current_url, "No 'success' in URL"
 
     def open_and_send_about_us_page_form(self):
         self.driver.get(LINKS_DICT["about_us_page"])
@@ -97,7 +100,7 @@ class FeedBackForms(BasePage):
         time.sleep(1)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
-        assert "success" in self.driver.current_url
+        assert "success" in self.driver.current_url, "No 'success' in URL"
 
     def open_and_send_contacts_page_form(self):
         self.driver.get(LINKS_DICT["contacts_page"])
@@ -109,7 +112,7 @@ class FeedBackForms(BasePage):
         time.sleep(1)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
-        assert "success" in self.driver.current_url
+        assert "success" in self.driver.current_url, "No 'success' in URL"
 
     def open_and_send_blog_page_form(self):
         self.driver.get(LINKS_DICT["blog_page"])
@@ -119,7 +122,7 @@ class FeedBackForms(BasePage):
         time.sleep(1)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
-        assert "success" in self.driver.current_url
+        assert "success" in self.driver.current_url, "No 'success' in URL"
 
     def open_and_send_development_service_form(self):
         self.driver.get(LINKS_DICT["service_development_page"])
@@ -132,4 +135,43 @@ class FeedBackForms(BasePage):
         time.sleep(1)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
-        assert "success" in self.driver.current_url
+        assert "success" in self.driver.current_url, "No 'success' in URL"
+
+    #other 3 services
+
+    def open_and_send_agile_article_form(self):
+        self.driver.get(LINKS_DICT["agile_article"])
+        self.accept_cookie()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys("Testname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys("Test-Company")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url, "No 'success' in URL"
+
+    def open_and_send_pitfalls_article_form(self):
+        self.driver.get(LINKS_DICT["pitfalls_article"])
+        self.accept_cookie()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys("Testname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url, "No 'success' in URL"
+
+    def open_and_send_cto_article_form(self):
+        self.driver.get(LINKS_DICT["cto_article"])
+        self.accept_cookie()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys("Testname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys("Test-Company")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url, "No 'success' in URL"
