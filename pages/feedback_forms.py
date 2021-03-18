@@ -1,4 +1,5 @@
 import time
+from imap_tools import MailBox
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from .base_page import BasePage
@@ -26,6 +27,18 @@ LINKS_DICT = {
     "cto_article": "https://dev.sibedge.com/article/ctos-reshape-it-priorities-to-overcome-crisis-mode/",
 }
 
+def get_email(name_value):
+    imap_user = "test4site@sibedge.com"
+    imap_password = "Hup28813"
+
+    with MailBox('outlook.office365.com').login(imap_user, imap_password) as mailbox:
+        for message in mailbox.fetch(limit=1, reverse=True):
+            email_body = message.text
+            if name_value in email_body:
+                return True
+            else:
+                return False
+            #assert name_value in email_body, "Unique name in not presented"
 
 class FeedBackForms(BasePage):
 
@@ -40,8 +53,9 @@ class FeedBackForms(BasePage):
                                  ".cookie-alert__button.cookie-alert__button--agree.js--cookie-alert-allow").click()
 
     def open_and_send_write_to_us_form(self):
+        name = "TestWriteToUs"
         self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.HEADER_FORM_BUTTON).click()
-        self.driver.find_element(By.ID, WriteToUsFormLocators.NAME_FIELD).send_keys('TestName')
+        self.driver.find_element(By.ID, WriteToUsFormLocators.NAME_FIELD).send_keys(name)
         self.driver.find_element(By.ID, WriteToUsFormLocators.EMAIL_FIELD).send_keys("testemail@email.com")
         self.driver.find_element(By.ID, WriteToUsFormLocators.PHONE_FIELD).send_keys("+79513454323")
         self.driver.find_element(By.ID, WriteToUsFormLocators.MESSAGE_FIELD).send_keys("Hello. Have a good day!")
@@ -52,6 +66,8 @@ class FeedBackForms(BasePage):
         )
 
         assert thank_you_notice != 0
+        time.sleep(3)
+        assert bool(get_email(name)) != False, "Email have no 'name' in body"
 
     def open_and_send_subscribe_to_us_form(self):
         self.driver.find_element(By.ID, SubscribeFormLocators.NAME_FIELD).send_keys('TestName')

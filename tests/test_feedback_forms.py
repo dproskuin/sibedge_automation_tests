@@ -65,5 +65,3 @@ def test_send_cto_article_form(driver):
 
 
 
-
-
