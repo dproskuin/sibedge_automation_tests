@@ -1,3 +1,4 @@
+"""This module describes methods for assertion and interaction with Feedback forms"""
 import time
 from imap_tools import MailBox
 from selenium.webdriver.common.by import By
@@ -9,8 +10,6 @@ from .locators import (
     WriteToUsFormLocators,
     BaseFeedbackFormLocators,
 )
-
-"""This class describes methods for interaction with Feedback forms"""
 
 LINK = "https://dev.sibedge.com/clients/"
 
@@ -33,7 +32,7 @@ LINKS_DICT = {
 """This function returns True, if email body contains correct "name_id" value."""
 
 
-def get_email(name_id: bool):
+def get_email(name_id: str):
     imap_user = "test4site@sibedge.com"
     imap_password = "Hup28813"
 
@@ -182,7 +181,53 @@ class FeedBackForms(BasePage):
         time.sleep(3)
         assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
 
-    # other 3 services
+    def open_and_send_extension_service_form(self):
+        name_id = "TestExtensionService"
+        self.driver.get(LINKS_DICT["service_extension_page"])
+        self.accept_cookie()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys("Test-Company")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url, "No 'success' in URL"
+        time.sleep(3)
+        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+
+    def open_and_send_squads_service_form(self):
+        name_id = "TestSquadsService"
+        self.driver.get(LINKS_DICT["service_squads_page"])
+        self.accept_cookie()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys("Test-Company")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url, "No 'success' in URL"
+        time.sleep(3)
+        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+
+    def open_and_send_devops_service_form(self):
+        name_id = "TestDevopsService"
+        self.driver.get(LINKS_DICT["service_devops_page"])
+        self.accept_cookie()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys("Test-Company")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url, "No 'success' in URL"
+        time.sleep(3)
+        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_agile_article_form(self):
         name_id = "TestAgileArticle"
