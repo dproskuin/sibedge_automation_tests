@@ -3,8 +3,12 @@ from imap_tools import MailBox
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from .base_page import BasePage
-from .locators import SubscribeFormLocators, MainPageLocators, WriteToUsFormLocators, \
-    BaseFeedbackFormLocators
+from .locators import (
+    SubscribeFormLocators,
+    MainPageLocators,
+    WriteToUsFormLocators,
+    BaseFeedbackFormLocators,
+)
 
 """This class describes methods for interaction with Feedback forms"""
 
@@ -29,7 +33,7 @@ LINKS_DICT = {
 """This function returns True, if email body contains correct "name_id" value."""
 
 
-def get_email(name_id):
+def get_email(name_id: bool):
     imap_user = "test4site@sibedge.com"
     imap_password = "Hup28813"
 
@@ -40,6 +44,7 @@ def get_email(name_id):
             if name_id in email_body:
                 return bool
             return "No 'name_id' value in email body"
+
 
 class FeedBackForms(BasePage):
 

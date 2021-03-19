@@ -1,11 +1,23 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from .base_page import BasePage
-from .locators import ModelsPageLocators, ProjectsPageLocators, ClientsPageLocators,\
-    ContactsPageLocators, DevelopmentPageLocators, QaPageLocators, DevopsPageLocators,\
-    WhySibedgePageLocators, PressPageLocators, BlogPageLocators, MainPageLocators, \
-    SubscribeToUsFormLocators, GetInTouchFormLocators, SitemapLocators, TeamExtensionLocators, \
-    SquadsProductLocators
+from .locators import (
+    ModelsPageLocators,
+    ProjectsPageLocators,
+    ClientsPageLocators,
+    ContactsPageLocators,
+    DevelopmentPageLocators,
+    QaPageLocators,
+    DevopsPageLocators,
+    WhySibedgePageLocators,
+    PressPageLocators,
+    BlogPageLocators,
+    MainPageLocators,
+    GetInTouchFormLocators,
+    SitemapLocators,
+    TeamExtensionLocators,
+    SquadsProductLocators,
+)
 
 LINK = "https://se.sibedge.com/en/"
 
