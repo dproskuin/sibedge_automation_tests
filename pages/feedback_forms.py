@@ -29,10 +29,9 @@ LINKS_DICT = {
     "pitfalls_article": "https://dev.sibedge.com/article/major-pitfalls/",
     "cto_article": "https://dev.sibedge.com/article/ctos-reshape-it-priorities-to-overcome-crisis-mode/",
 }
-"""This function returns True, if email body contains correct "name_id" value."""
 
-
-def get_email(name_id: str):
+def get_email(name_id: str) -> str or bool:
+    """This function returns True, if email body contains correct "name_id" value."""
     imap_user = "test4site@sibedge.com"
     imap_password = "Hup28813"
 
@@ -190,8 +189,9 @@ class FeedBackForms(BasePage):
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys("Test-Company")
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
-        time.sleep(1)
+        time.sleep(0.5)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        time.sleep(1)
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
@@ -216,6 +216,22 @@ class FeedBackForms(BasePage):
     def open_and_send_devops_service_form(self):
         name_id = "TestDevopsService"
         self.driver.get(LINKS_DICT["service_devops_page"])
+        self.accept_cookie()
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys("Test-Company")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url, "No 'success' in URL"
+        time.sleep(3)
+        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+
+    def open_and_send_qa_service_form(self):
+        name_id = "TestQaService"
+        self.driver.get(LINKS_DICT["service_qa_page"])
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")

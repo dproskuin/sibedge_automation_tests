@@ -44,7 +44,25 @@ def test_send_development_service_form(driver):
     page = FeedBackForms(driver, LINK)
     page.open_and_send_development_service_form()
 
-#other 3 services tests
+def test_send_extension_service_form(driver):
+
+    page = FeedBackForms(driver, LINK)
+    page.open_and_send_extension_service_form()
+
+def test_send_squads_service_form(driver):
+
+    page = FeedBackForms(driver, LINK)
+    page.open_and_send_squads_service_form()
+
+def test_send_devops_service_form(driver):
+
+    page = FeedBackForms(driver, LINK)
+    page.open_and_send_devops_service_form()
+
+def test_send_qa_service_form(driver):
+
+    page = FeedBackForms(driver, LINK)
+    page.open_and_send_qa_service_form()
 
 def test_send_agile_article_form(driver):
 
