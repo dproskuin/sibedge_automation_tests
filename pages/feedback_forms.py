@@ -1,5 +1,6 @@
 """This module describes methods for assertion and interaction with Feedback forms"""
 import time
+import settings
 from imap_tools import MailBox
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
@@ -11,35 +12,12 @@ from .locators import (
     BaseFeedbackFormLocators,
 )
 
-LINK = "https://dev.sibedge.com/clients/"
-
-LINKS_DICT = {
-    "main_page": "https://dev.sibedge.com/",
-    "clients_page": "https://dev.sibedge.com/clients/",
-    "models_page": "https://dev.sibedge.com/models/",
-    "contacts_page": "https://dev.sibedge.com/contacts/",
-    "blog_page": "https://dev.sibedge.com/blog/",
-    "service_development_page": "https://dev.sibedge.com/services/development/",
-    "service_extension_page": "https://dev.sibedge.com/services/team-extension/",
-    "service_squads_page": "https://dev.sibedge.com/squads-product-development/",
-    "service_devops_page": "https://dev.sibedge.com/devops/",
-    "service_qa_page": "https://dev.sibedge.com/qa/",
-    "about_us_page": "https:/dev.sibedge.com/about/",
-    "agile_article": "https://dev.sibedge.com/article/agile-and-squad-services/",
-    "pitfalls_article": "https://dev.sibedge.com/article/major-pitfalls/",
-    "cto_article": "https://dev.sibedge.com/article/ctos-reshape-it-priorities-to-overcome-crisis-mode/",
-    "anchorfree_case": "https://se.sibedge.com/cases/secure-and-private-internet-for-millions-of-users/",
-}
-
 
 def get_email(name_id: str) -> str or bool:
     """This function returns True, if email body contains correct "name_id" value
     Error string, if email body doesn't.
     """
-    imap_user = "test4site@sibedge.com"
-    imap_password = "Hup28813"
-
-    with MailBox("outlook.office365.com").login(imap_user, imap_password) as mailbox:
+    with MailBox("outlook.office365.com").login(settings.Const.IMAP_USER, settings.Const.IMAP_PASSWORD) as mailbox:
         for message in mailbox.fetch(limit=1, reverse=True):
             email_body = message.text
 
@@ -67,6 +45,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_write_to_us_form(self):
         name_id = "TestWriteToUs"
+        self.driver.get(settings.Const.CLIENTS_PAGE)
         self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.HEADER_FORM_BUTTON).click()
         self.driver.find_element(By.ID, WriteToUsFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.ID, WriteToUsFormLocators.EMAIL_FIELD).send_keys("testemail@email.com")
@@ -85,6 +64,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_subscribe_to_us_form(self):
         name_id = "TestSubscribeToUs"
+        self.driver.get(settings.Const.CLIENTS_PAGE)
         self.driver.find_element(By.ID, SubscribeFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.ID, SubscribeFormLocators.EMAIL_FIELD).send_keys("testemail@email.com")
         self.driver.find_element(By.ID, SubscribeFormLocators.MESSAGE_FIELD).send_keys("Hello. Have a good day!")
@@ -102,7 +82,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_main_page_form(self):
         name_id = "TestMainPage"
-        self.driver.get(LINKS_DICT["main_page"])
+        self.driver.get(settings.Const.MAIN_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -117,7 +97,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_models_page_form(self):
         name_id = "TestModelsPage"
-        self.driver.get(LINKS_DICT["models_page"])
+        self.driver.get(settings.Const.MODELS_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -132,7 +112,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_about_us_page_form(self):
         name_id = "TestAboutUs"
-        self.driver.get(LINKS_DICT["about_us_page"])
+        self.driver.get(settings.Const.ABOUT_US_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -147,7 +127,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_contacts_page_form(self):
         name_id = "TestContacts"
-        self.driver.get(LINKS_DICT["contacts_page"])
+        self.driver.get(settings.Const.CONTACTS_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -162,7 +142,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_blog_page_form(self):
         name_id = "TestBlog"
-        self.driver.get(LINKS_DICT["blog_page"])
+        self.driver.get(settings.Const.BLOG_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
@@ -175,7 +155,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_development_service_form(self):
         name_id = "TestDevelopmentService"
-        self.driver.get(LINKS_DICT["service_development_page"])
+        self.driver.get(settings.Const.SERVICE_DEVELOPMENT_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
@@ -191,7 +171,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_extension_service_form(self):
         name_id = "TestExtensionService"
-        self.driver.get(LINKS_DICT["service_extension_page"])
+        self.driver.get(settings.Const.SERVICE_EXTENSION_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -208,7 +188,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_squads_service_form(self):
         name_id = "TestSquadsService"
-        self.driver.get(LINKS_DICT["service_squads_page"])
+        self.driver.get(settings.Const.SERVICE_SQUADS_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
@@ -224,7 +204,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_devops_service_form(self):
         name_id = "TestDevopsService"
-        self.driver.get(LINKS_DICT["service_devops_page"])
+        self.driver.get(settings.Const.SERVICE_DEVOPS_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -240,7 +220,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_qa_service_form(self):
         name_id = "TestQaService"
-        self.driver.get(LINKS_DICT["service_qa_page"])
+        self.driver.get(settings.Const.SERVICE_QA_PAGE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -256,7 +236,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_agile_article_form(self):
         name_id = "TestAgileArticle"
-        self.driver.get(LINKS_DICT["agile_article"])
+        self.driver.get(settings.Const.AGILE_ARTICLE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -272,7 +252,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_pitfalls_article_form(self):
         name_id = "TestPitfallsArticle"
-        self.driver.get(LINKS_DICT["pitfalls_article"])
+        self.driver.get(settings.Const.PITFALLS_ARTICLE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -286,7 +266,7 @@ class FeedBackForms(BasePage):
 
     def open_and_send_cto_article_form(self):
         name_id = "TestCtoArticle"
-        self.driver.get(LINKS_DICT["cto_article"])
+        self.driver.get(settings.Const.CTO_ARTICLE)
         self.accept_cookie()
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys("Testlastname")
@@ -301,7 +281,7 @@ class FeedBackForms(BasePage):
         assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_anchorfree_case_form(self):
-        self.driver.get(LINKS_DICT["anchorfree_case"])
+        self.driver.get(settings.Const.ANCHORFREE_CASE)
         self.accept_cookie()
         self.driver.execute_script("window.scrollTo(0, 1000)")
         self.driver.find_element_by_css_selector(

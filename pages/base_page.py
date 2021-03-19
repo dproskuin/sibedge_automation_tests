@@ -1,6 +1,7 @@
 """This module describes Basic page methods (Page object)"""
 from selenium.webdriver import Remote as RemoteWebDriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class BasePage:
