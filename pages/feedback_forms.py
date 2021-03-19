@@ -33,7 +33,7 @@ def get_email(name_id):
     imap_user = "test4site@sibedge.com"
     imap_password = "Hup28813"
 
-    with MailBox('outlook.office365.com').login(imap_user, imap_password) as mailbox:
+    with MailBox("outlook.office365.com").login(imap_user, imap_password) as mailbox:
         for message in mailbox.fetch(limit=1, reverse=True):
             email_body = message.text
 

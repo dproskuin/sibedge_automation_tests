@@ -121,7 +121,7 @@ class BaseFeedbackFormLocators:
 
     PHONE_FIELD = "user_phone"
 
-    #MESSAGE_FIELD = ""
+    MESSAGE_FIELD = "feedback_messagefooter"
 
     SEND_BUTTON = "submit"
 

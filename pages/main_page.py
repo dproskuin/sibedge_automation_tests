@@ -60,7 +60,7 @@ class MainPage(BasePage):
     def open_development_page(self):
         self.open_services_list()
         development_button = self.driver.find_element(By.CSS_SELECTOR,
-            'li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(1) > .nav__sub-menu-link'
+            "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(1) > .nav__sub-menu-link"
         )
         development_button.click()
         assert self.is_element_present(
@@ -69,7 +69,7 @@ class MainPage(BasePage):
     def open_qa_page(self):
         self.open_services_list()
         qa_button = self.driver.find_element(By.CSS_SELECTOR,
-        'li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(2) > .nav__sub-menu-link'
+        "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(2) > .nav__sub-menu-link"
         )
         qa_button.click()
         assert self.is_element_present(
@@ -78,7 +78,7 @@ class MainPage(BasePage):
     def open_devops_page(self):
         self.open_services_list()
         devops_button = self.driver.find_element(By.CSS_SELECTOR,
-        'li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link'
+        "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link"
         )
         devops_button.click()
         assert self.is_element_present(
@@ -136,12 +136,12 @@ class MainPage(BasePage):
         )
         why_sibedge.click()
         assert self.is_element_present(
-            *WhySibedgePageLocators.WHYSIBEDGE_HEADER), "<Why sibedge> header is not presented"
+            *WhySibedgePageLocators.WHYSIBEDGE_HEADER), "Why sibedge header is not presented"
 
     def open_press_page(self):
         self.open_about_us_list()
         press = self.driver.find_element(By.CSS_SELECTOR,
-            'li:nth-of-type(2) > .nav__sub-menu > li:nth-of-type(2) > .nav__sub-menu-link'
+            "li:nth-of-type(2) > .nav__sub-menu > li:nth-of-type(2) > .nav__sub-menu-link"
         )
         press.click()
         assert self.is_element_present(
@@ -150,7 +150,7 @@ class MainPage(BasePage):
     def open_blog_page(self):
         self.open_about_us_list()
         blog = self.driver.find_element(By.CSS_SELECTOR,
-            'li:nth-of-type(2) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link'
+            "li:nth-of-type(2) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link"
         )
         blog.click()
         assert self.is_element_present(
