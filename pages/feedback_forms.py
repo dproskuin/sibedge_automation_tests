@@ -63,7 +63,8 @@ class FeedBackForms(BasePage):
         self.driver.find_element(By.NAME, WriteToUsFormLocators.SEND_BUTTON).click()
 
         thank_you_notice = self.driver.find_element(
-            By.CLASS_NAME, WriteToUsFormLocators.THANK_YOU_NOTICE_MESSAGE
+            By.CLASS_NAME,
+            WriteToUsFormLocators.THANK_YOU_NOTICE_MESSAGE,
         )
 
         assert thank_you_notice != 0
@@ -79,7 +80,8 @@ class FeedBackForms(BasePage):
         self.driver.find_element(By.CSS_SELECTOR, SubscribeFormLocators.SEND_BUTTON).click()
 
         thank_you_notice = self.driver.find_element(
-            By.CLASS_NAME, SubscribeFormLocators.THANK_YOU_NOTICE_MESSAGE
+            By.CLASS_NAME,
+            SubscribeFormLocators.THANK_YOU_NOTICE_MESSAGE,
         )
 
         assert thank_you_notice != 0
