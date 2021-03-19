@@ -30,8 +30,11 @@ LINKS_DICT = {
     "cto_article": "https://dev.sibedge.com/article/ctos-reshape-it-priorities-to-overcome-crisis-mode/",
 }
 
+
 def get_email(name_id: str) -> str or bool:
-    """This function returns True, if email body contains correct "name_id" value."""
+    """This function returns True, if email body contains correct "name_id" value
+    Error string, if email body doesn't.
+    """
     imap_user = "test4site@sibedge.com"
     imap_password = "Hup28813"
 
@@ -41,20 +44,25 @@ def get_email(name_id: str) -> str or bool:
 
             if name_id in email_body:
                 return bool
+
             return "No 'name_id' value in email body"
 
 
 class FeedBackForms(BasePage):
 
     def open_about_us_and_form(self):
-        about_us = self.driver.find_element(By.CSS_SELECTOR,
-                                            ".nav__item:nth-of-type(2) .nav__item-link")
+        about_us = self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".nav__item:nth-of-type(2) .nav__item-link",
+        )
         ActionChains(self.driver).move_to_element(about_us).perform()
         self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.SUBSCRIBE_TO_US_BUTTON).click()
 
     def accept_cookie(self):
-        self.driver.find_element(By.CSS_SELECTOR,
-                                 ".cookie-alert__button.cookie-alert__button--agree.js--cookie-alert-allow").click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".cookie-alert__button.cookie-alert__button--agree.js--cookie-alert-allow"
+        ).click()
 
     def open_and_send_write_to_us_form(self):
         name_id = "TestWriteToUs"
