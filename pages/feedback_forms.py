@@ -28,6 +28,7 @@ LINKS_DICT = {
     "agile_article": "https://dev.sibedge.com/article/agile-and-squad-services/",
     "pitfalls_article": "https://dev.sibedge.com/article/major-pitfalls/",
     "cto_article": "https://dev.sibedge.com/article/ctos-reshape-it-priorities-to-overcome-crisis-mode/",
+    "anchorfree_case": "https://se.sibedge.com/cases/secure-and-private-internet-for-millions-of-users/",
 }
 
 
@@ -298,3 +299,24 @@ class FeedBackForms(BasePage):
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
         assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+
+    def open_and_send_anchorfree_case_form(self):
+        self.driver.get(LINKS_DICT["anchorfree_case"])
+        self.accept_cookie()
+        self.driver.execute_script("window.scrollTo(0, 1000)")
+        self.driver.find_element_by_css_selector(
+            ".redesign-content-case__sliding [data-form]",
+        ).click()
+        name_id = "TestAnchorfreeCase"
+        self.driver.find_element(By.NAME, "user_name").send_keys(name_id)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys("test@email.com")
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys("+79994512345")
+        time.sleep(1)
+        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+
+        assert "success" in self.driver.current_url, "No 'success' in URL"
+        time.sleep(3)
+        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+
+
+

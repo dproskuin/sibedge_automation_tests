@@ -81,5 +81,8 @@ def test_send_cto_article_form(driver):
     page = FeedBackForms(driver, LINK)
     page.open_and_send_cto_article_form()
 
+def test_send_anchorfree_case_form(driver):
 
+    page = FeedBackForms(driver, LINK)
+    page.open_and_send_anchorfree_case_form()
 
