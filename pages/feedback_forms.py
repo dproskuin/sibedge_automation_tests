@@ -32,7 +32,7 @@ class FeedBackForms(BasePage):
     def open_about_us_and_form(self):
         about_us = self.driver.find_element(
             By.CSS_SELECTOR,
-            ".nav__item:nth-of-type(2) .nav__item-link",
+            MainPageLocators.ABOUT_US_BUTTON,
         )
         ActionChains(self.driver).move_to_element(about_us).perform()
         self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.SUBSCRIBE_TO_US_BUTTON).click()
@@ -40,7 +40,7 @@ class FeedBackForms(BasePage):
     def accept_cookie(self) -> None:
         self.driver.find_element(
             By.CSS_SELECTOR,
-            ".cookie-alert__button.cookie-alert__button--agree.js--cookie-alert-allow"
+            MainPageLocators.COOKIE_ALLOW_BUTTON,
         ).click()
 
     def open_and_send_write_to_us_form(self):

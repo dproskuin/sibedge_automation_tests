@@ -70,6 +70,10 @@ class MainPageLocators:
 
     SUBSCRIBE_TO_US_BUTTON = "li:nth-of-type(2) > .nav__sub-menu > li:nth-of-type(5) > .nav__sub-menu-link"
 
+    ABOUT_US_BUTTON = ".nav__item:nth-of-type(2) .nav__item-link"
+
+    COOKIE_ALLOW_BUTTON = ".cookie-alert__button.cookie-alert__button--agree.js--cookie-alert-allow"
+
 class GetInTouchFormLocators:
     GETINTOUCH_HEADER = (By.CSS_SELECTOR,
                          ".feedback-form.js--feedback-form.js--form.visible > form[method='post'] > .feedback-form__title")
