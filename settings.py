@@ -16,3 +16,8 @@ class Const:
     PITFALLS_ARTICLE = "https://dev.sibedge.com/article/major-pitfalls/"
     CTO_ARTICLE = "https://dev.sibedge.com/article/ctos-reshape-it-priorities-to-overcome-crisis-mode/"
     ANCHORFREE_CASE = "https://se.sibedge.com/cases/secure-and-private-internet-for-millions-of-users/"
+    LAST_NAME = "TestLastName"
+    PHONE = "+70000000000"
+    EMAIL = "autotest@email.com"
+    MESSAGE = "Hello. This is autotest. Have a good day!"
+    COMPANY = "Test-Company"
