@@ -4,7 +4,7 @@ import settings
 from imap_tools import MailBox
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
-from .base_page import BasePage
+from .base_form import BaseForm
 from .locators import (
     SubscribeFormLocators,
     MainPageLocators,
@@ -27,7 +27,7 @@ def get_email(name_id: str) -> str or bool:
             return "No 'name_id' value in email body"
 
 
-class FeedBackForms(BasePage):
+class FeedBackForms(BaseForm):
 
     def open_about_us_and_form(self):
         about_us = self.driver.find_element(

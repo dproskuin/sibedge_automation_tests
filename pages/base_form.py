@@ -1,13 +1,11 @@
 from selenium.webdriver import Remote as RemoteWebDriver
 from selenium.common.exceptions import NoSuchElementException
 
+class BaseForm:
+    """This class describes Basic feedback forms methods (Page object)"""
 
-class BasePage:
-    """This module describes Basic page methods (Page object)"""
-
-    def __init__(self, driver: RemoteWebDriver, link, timeout=10):
+    def __init__(self, driver: RemoteWebDriver, timeout=10):
         self.driver = driver
-        self.link = link
         self.driver.implicitly_wait(timeout)
 
     def is_element_present(self, how, what):
@@ -16,6 +14,3 @@ class BasePage:
         except NoSuchElementException:
             return False
         return True
-
-    def open(self):
-        self.driver.get(self.link)
