@@ -3,12 +3,10 @@ from pages.main_page import MainPage, LINK
 """Here are located test cases for site pages.
 
 Executing:
-
 Type 'pytest [filename] (test_main_page.py)'
 to the command line to execute test cases
 
 Parameters:
-
 Choose browser language: --browser_language=[ru]/[en] 
 -v = verbose mode
 -m = run marked tests
@@ -118,12 +116,6 @@ def test_open_blog_page(driver):
     page.accept_cookie()
     page.open_blog_page()
 
-@allure.severity(allure.severity_level.CRITICAL)
-def test_open_subscribe_to_us_form(driver):
-    page = MainPage(driver, LINK)
-    page.open()
-    page.accept_cookie()
-    page.open_subscribe_to_us_form()
 
 @allure.severity(allure.severity_level.CRITICAL)
 def test_open_sitemap_page(driver):
