@@ -1,5 +1,21 @@
 import allure
 from pages.feedback_forms import FeedBackForms
+"""Here are located test cases for site pages.
+
+Executing:
+Type 'pytest [filename] (test_main_page.py)'
+to the command line to execute test cases
+
+Parameters:
+Choose browser language: --browser_language=[ru]/[en] 
+-v = verbose mode
+-m = run marked tests
+-s = string output
+
+Creating allure report:
+1) pytest --alluredir=[dir] [test_file.py]
+3) allure serve [dir].
+"""
 
 @allure.severity(allure.severity_level.CRITICAL)
 def test_send_write_to_us_form(driver):

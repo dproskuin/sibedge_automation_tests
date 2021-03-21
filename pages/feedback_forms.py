@@ -52,13 +52,7 @@ class FeedBackForms(BaseForm):
         self.driver.find_element(By.ID, WriteToUsFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
         self.driver.find_element(By.ID, WriteToUsFormLocators.MESSAGE_FIELD).send_keys(settings.Const.MESSAGE)
         self.driver.find_element(By.NAME, WriteToUsFormLocators.SEND_BUTTON).click()
-
-        thank_you_notice = self.driver.find_element(
-            By.CLASS_NAME,
-            WriteToUsFormLocators.THANK_YOU_NOTICE_MESSAGE,
-        )
-
-        assert thank_you_notice != 0
+        assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
         assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
 
@@ -70,13 +64,7 @@ class FeedBackForms(BaseForm):
         self.driver.find_element(By.ID, SubscribeFormLocators.MESSAGE_FIELD).send_keys(settings.Const.MESSAGE)
         time.sleep(1)
         self.driver.find_element(By.CSS_SELECTOR, SubscribeFormLocators.SEND_BUTTON).click()
-
-        thank_you_notice = self.driver.find_element(
-            By.CLASS_NAME,
-            SubscribeFormLocators.THANK_YOU_NOTICE_MESSAGE,
-        )
-
-        assert thank_you_notice != 0
+        assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
         assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
 
@@ -92,7 +80,6 @@ class FeedBackForms(BaseForm):
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
         time.sleep(1)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
-
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
         assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
@@ -107,7 +94,6 @@ class FeedBackForms(BaseForm):
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
         time.sleep(1)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
-
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
         assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
