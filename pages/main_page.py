@@ -26,11 +26,17 @@ class MainPage(BasePage):
     """This class contains methods for opening pages/elements + asserts"""
 
     def open_about_us_list(self):
-        about_us = self.driver.find_element(By.CSS_SELECTOR, ".nav__item:nth-of-type(2) .nav__item-link")
+        about_us = self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".nav__item:nth-of-type(2) .nav__item-link"
+        )
         ActionChains(self.driver).move_to_element(about_us).perform()
 
     def open_services_list(self):
-        services = self.driver.find_element(By.CSS_SELECTOR, ".nav__item:nth-of-type(3) .nav__item-link")
+        services = self.driver.find_element(
+            By.CSS_SELECTOR,
+            ".nav__item:nth-of-type(3) .nav__item-link"
+        )
         ActionChains(self.driver).move_to_element(services).perform()
 
     def open_models_page(self):
@@ -39,7 +45,9 @@ class MainPage(BasePage):
             ".header__nav.js--header-nav > .nav > li:nth-of-type(4) > .nav__item-link",
         ).click()
 
-        assert self.is_element_present(*ModelsPageLocators.MODELS_HEADER), "Models header is not presented."
+        assert self.is_element_present(
+            *ModelsPageLocators.MODELS_HEADER
+        ), "Models header is not presented."
 
     def open_projects_page(self):
         self.driver.find_element(
@@ -48,7 +56,8 @@ class MainPage(BasePage):
         ).click()
 
         assert self.is_element_present(
-            *ProjectsPageLocators.PROJECTS_HEADER), "Projects header is not presented. Check test results."
+            *ProjectsPageLocators.PROJECTS_HEADER),\
+            "Projects header is not presented. Check test results."
 
     def open_clients_page(self):
         self.driver.find_element(
@@ -57,9 +66,11 @@ class MainPage(BasePage):
         ).click()
 
         assert self.is_element_present(
-            *ClientsPageLocators.CLIENTS_HEADER), "Clients header is not presented. Check test results."
+            *ClientsPageLocators.CLIENTS_HEADER),\
+            "Clients header is not presented. Check test results."
         assert self.is_element_present(
-            *ClientsPageLocators.CLIENTS_TITLE), "Clients title is not presented. Check test result"
+            *ClientsPageLocators.CLIENTS_TITLE),\
+            "Clients title is not presented. Check test result"
 
     def open_contacts_page(self):
         self.driver.find_element(
@@ -67,9 +78,11 @@ class MainPage(BasePage):
             ".header__nav.js--header-nav > .nav > li:nth-of-type(7) > .nav__item-link",
         ).click()
         assert self.is_element_present(
-            *ContactsPageLocators.CONTACTS_HEADER), "Contacts page header is not presented."
+            *ContactsPageLocators.CONTACTS_HEADER),\
+            "Contacts page header is not presented."
         assert self.is_element_present(
-            *ContactsPageLocators.CONTACTS_ADRESSES_LIST), "Contacts Adresses List is not present."
+            *ContactsPageLocators.CONTACTS_ADRESSES_LIST),\
+            "Contacts Adresses List is not present."
 
     def open_development_page(self):
         self.open_services_list()
@@ -79,7 +92,8 @@ class MainPage(BasePage):
         ).click()
 
         assert self.is_element_present(
-            *DevelopmentPageLocators.DEVELOPMENT_HEADER), "Dev service page header is not presented."
+            *DevelopmentPageLocators.DEVELOPMENT_HEADER),\
+            "Dev service page header is not presented."
 
     def open_qa_page(self):
         self.open_services_list()
@@ -89,7 +103,8 @@ class MainPage(BasePage):
         ).click()
 
         assert self.is_element_present(
-            *QaPageLocators.QA_HEADER), "QA Page header is not presented. Check test results."
+            *QaPageLocators.QA_HEADER),\
+            "QA Page header is not presented. Check test results."
 
     def open_devops_page(self):
         self.open_services_list()
@@ -109,7 +124,8 @@ class MainPage(BasePage):
         ).click()
 
         assert self.is_element_present(
-            *SquadsProductLocators.SQUADS_PRODUCT_HEADER), "Squads header is not present."
+            *SquadsProductLocators.SQUADS_PRODUCT_HEADER),\
+            "Squads header is not present."
 
     def open_team_extension_page(self):
         self.open_services_list()
@@ -118,7 +134,8 @@ class MainPage(BasePage):
             "li:nth-of-type(3) > .nav__sub-menu > li:nth-of-type(3) > .nav__sub-menu-link",
         ).click()
         assert self.is_element_present(
-            *TeamExtensionLocators.TEAMEXTENSION_HEADER), "Team Extension header isn't presented"
+            *TeamExtensionLocators.TEAMEXTENSION_HEADER),\
+            "Team Extension header isn't presented"
 
     def accept_cookie(self):
         self.driver.find_element(
@@ -140,7 +157,8 @@ class MainPage(BasePage):
             ".header__mail-button",
         ).click()
         assert self.is_element_present(
-            *GetInTouchFormLocators.GETINTOUCH_HEADER), "Get in touch header is not presented!"
+            *GetInTouchFormLocators.GETINTOUCH_HEADER),\
+            "Get in touch header is not presented!"
 
     def close_get_in_touch_form(self):
         self.driver.find_element(
@@ -156,7 +174,8 @@ class MainPage(BasePage):
             ).click()
 
         assert self.is_element_present(
-            *WhySibedgePageLocators.WHYSIBEDGE_HEADER), "Why sibedge header is not presented"
+            *WhySibedgePageLocators.WHYSIBEDGE_HEADER),\
+            "Why sibedge header is not presented"
 
     def open_press_page(self):
         self.open_about_us_list()
@@ -165,7 +184,8 @@ class MainPage(BasePage):
             "li:nth-of-type(2) > .nav__sub-menu > li:nth-of-type(2) > .nav__sub-menu-link",
         ).click()
         assert self.is_element_present(
-            *PressPageLocators.PRESS_HEADER), "Press header is not presented. Check test results."
+            *PressPageLocators.PRESS_HEADER),\
+            "Press header is not presented. Check test results."
 
     def open_blog_page(self):
         self.open_about_us_list()
@@ -175,7 +195,8 @@ class MainPage(BasePage):
         ).click()
 
         assert self.is_element_present(
-            *BlogPageLocators.BLOG_HEADER), "Blog header is not presented. Check test results."
+            *BlogPageLocators.BLOG_HEADER),\
+            "Blog header is not presented. Check test results."
 
     def open_sitemap_page(self):
         self.driver.get("https://dev.sibedge.com/sitemap/")
