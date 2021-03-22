@@ -10,8 +10,10 @@ from .locators import (
     BaseFeedbackFormLocators,
 )
 
+
 class FeedBackForms(BaseForm):
     """Contains methods for interaction with feedback forms."""
+
     def open_about_us_and_form(self) -> None:
         """This method will open About us dropdown and click on element."""
         about_us = self.driver.find_element(
@@ -126,7 +128,7 @@ class FeedBackForms(BaseForm):
         ).send_keys(settings.Const.PHONE)
         time.sleep(1)
         self.driver.find_element(
-            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON)\
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON) \
             .click()
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
@@ -154,7 +156,7 @@ class FeedBackForms(BaseForm):
         ).send_keys(settings.Const.PHONE)
         time.sleep(1)
         self.driver.find_element(
-            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON)\
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON) \
             .click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
