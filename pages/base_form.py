@@ -1,5 +1,7 @@
 from selenium.webdriver import Remote as RemoteWebDriver
 from selenium.common.exceptions import NoSuchElementException
+from imap_tools import MailBox
+import settings
 
 class BaseForm:
     """This class describes Basic feedback forms methods (Page object)"""
@@ -14,3 +16,19 @@ class BaseForm:
         except NoSuchElementException:
             return False
         return True
+
+    def get_email(name_id: str) -> str or bool:
+        """Returns True, if email body contains correct
+        "name_id" value. Error string, if email body doesn't.
+        """
+        with MailBox("outlook.office365.com").login(
+                settings.Const.IMAP_USER, settings.Const.IMAP_PASSWORD
+        ) as mailbox:
+            for message in mailbox.fetch(limit=1, reverse=True):
+                email_body = message.text
+
+                if name_id not in email_body:
+                    return False
+
+                return True
+

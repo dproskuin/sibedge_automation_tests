@@ -20,7 +20,6 @@ Creating allure report:
 @allure.severity(allure.severity_level.CRITICAL)
 def test_send_write_to_us_form(driver):
     page = FeedBackForms(driver)
-    page.accept_cookie()
     page.open_and_send_write_to_us_form()
 
 @allure.severity(allure.severity_level.CRITICAL)

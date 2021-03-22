@@ -1,5 +1,4 @@
 import time
-from imap_tools import MailBox
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 import settings
@@ -10,21 +9,6 @@ from .locators import (
     WriteToUsFormLocators,
     BaseFeedbackFormLocators,
 )
-
-def get_email(name_id: str) -> str or bool:
-    """Returns True, if email body contains correct
-    "name_id" value. Error string, if email body doesn't.
-    """
-    with MailBox("outlook.office365.com").login(
-            settings.Const.IMAP_USER, settings.Const.IMAP_PASSWORD
-    ) as mailbox:
-        for message in mailbox.fetch(limit=1, reverse=True):
-            email_body = message.text
-
-            if name_id in email_body:
-                return bool
-
-            return "No 'name_id' value in email body"
 
 class FeedBackForms(BaseForm):
     """Contains methods for interaction with feedback forms."""
@@ -73,7 +57,7 @@ class FeedBackForms(BaseForm):
         ).click()
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_subscribe_to_us_form(self):
@@ -97,7 +81,7 @@ class FeedBackForms(BaseForm):
         ).click()
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_main_page_form(self):
@@ -125,7 +109,7 @@ class FeedBackForms(BaseForm):
         ).click()
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_models_page_form(self):
@@ -153,7 +137,7 @@ class FeedBackForms(BaseForm):
             .click()
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_about_us_page_form(self):
@@ -182,7 +166,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_contacts_page_form(self):
@@ -211,7 +195,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_blog_page_form(self):
@@ -234,7 +218,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_development_service_form(self):
@@ -266,7 +250,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_extension_service_form(self):
@@ -299,7 +283,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_squads_service_form(self):
@@ -331,7 +315,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_devops_service_form(self):
@@ -363,7 +347,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_qa_service_form(self):
@@ -395,7 +379,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_agile_article_form(self):
@@ -427,7 +411,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_pitfalls_article_form(self):
@@ -453,7 +437,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_cto_article_form(self):
@@ -485,7 +469,7 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False,\
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_anchorfree_case_form(self):
@@ -512,5 +496,5 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, \
+        assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
