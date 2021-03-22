@@ -1,9 +1,8 @@
-"""This module describes methods for assertion and interaction with Feedback forms"""
 import time
-import settings
 from imap_tools import MailBox
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+import settings
 from .base_form import BaseForm
 from .locators import (
     SubscribeFormLocators,
@@ -12,12 +11,13 @@ from .locators import (
     BaseFeedbackFormLocators,
 )
 
-
 def get_email(name_id: str) -> str or bool:
-    """This function returns True, if email body contains correct "name_id" value
-    Error string, if email body doesn't.
+    """Returns True, if email body contains correct
+    "name_id" value. Error string, if email body doesn't.
     """
-    with MailBox("outlook.office365.com").login(settings.Const.IMAP_USER, settings.Const.IMAP_PASSWORD) as mailbox:
+    with MailBox("outlook.office365.com").login(
+            settings.Const.IMAP_USER, settings.Const.IMAP_PASSWORD
+    ) as mailbox:
         for message in mailbox.fetch(limit=1, reverse=True):
             email_body = message.text
 
@@ -26,249 +26,472 @@ def get_email(name_id: str) -> str or bool:
 
             return "No 'name_id' value in email body"
 
-
 class FeedBackForms(BaseForm):
-
-    def open_about_us_and_form(self):
+    """Contains methods for interaction with feedback forms."""
+    def open_about_us_and_form(self) -> None:
+        """This method will open About us dropdown and click on element."""
         about_us = self.driver.find_element(
             By.CSS_SELECTOR,
             MainPageLocators.ABOUT_US_BUTTON,
         )
         ActionChains(self.driver).move_to_element(about_us).perform()
-        self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.SUBSCRIBE_TO_US_BUTTON).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            MainPageLocators.SUBSCRIBE_TO_US_BUTTON,
+        ).click()
 
     def accept_cookie(self) -> None:
+        """Finds "allow" button on cookie alert and click on it."""
         self.driver.find_element(
             By.CSS_SELECTOR,
             MainPageLocators.COOKIE_ALLOW_BUTTON,
         ).click()
 
     def open_and_send_write_to_us_form(self):
+        """Opens given page, than send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestWriteToUs"
         self.driver.get(settings.Const.CLIENTS_PAGE)
-        self.driver.find_element(By.CSS_SELECTOR, MainPageLocators.HEADER_FORM_BUTTON).click()
-        self.driver.find_element(By.ID, WriteToUsFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.ID, WriteToUsFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.ID, WriteToUsFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
-        self.driver.find_element(By.ID, WriteToUsFormLocators.MESSAGE_FIELD).send_keys(settings.Const.MESSAGE)
-        self.driver.find_element(By.NAME, WriteToUsFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, MainPageLocators.HEADER_FORM_BUTTON
+        ).click()
+        self.driver.find_element(
+            By.ID, WriteToUsFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.ID, WriteToUsFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.ID, WriteToUsFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.ID, WriteToUsFormLocators.MESSAGE_FIELD
+        ).send_keys(settings.Const.MESSAGE)
+        self.driver.find_element(
+            By.NAME, WriteToUsFormLocators.SEND_BUTTON
+        ).click()
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_subscribe_to_us_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestSubscribeToUs"
         self.driver.get(settings.Const.CLIENTS_PAGE)
-        self.driver.find_element(By.ID, SubscribeFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.ID, SubscribeFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.ID, SubscribeFormLocators.MESSAGE_FIELD).send_keys(settings.Const.MESSAGE)
+        self.driver.find_element(
+            By.ID, SubscribeFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.ID, SubscribeFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.ID, SubscribeFormLocators.MESSAGE_FIELD
+        ).send_keys(settings.Const.MESSAGE)
         time.sleep(1)
-        self.driver.find_element(By.CSS_SELECTOR, SubscribeFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.CSS_SELECTOR, SubscribeFormLocators.SEND_BUTTON
+        ).click()
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_main_page_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestMainPage"
         self.driver.get(settings.Const.MAIN_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
         ).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_models_page_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestModelsPage"
         self.driver.get(settings.Const.MODELS_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON)\
+            .click()
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_about_us_page_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestAboutUs"
         self.driver.get(settings.Const.ABOUT_US_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON)\
+            .click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_contacts_page_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestContacts"
         self.driver.get(settings.Const.CONTACTS_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_blog_page_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestBlog"
         self.driver.get(settings.Const.BLOG_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_development_service_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestDevelopmentService"
         self.driver.get(settings.Const.SERVICE_DEVELOPMENT_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys(settings.Const.COMPANY)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD
+        ).send_keys(settings.Const.COMPANY)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_extension_service_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestExtensionService"
         self.driver.get(settings.Const.SERVICE_EXTENSION_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys(settings.Const.COMPANY)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD
+        ).send_keys(settings.Const.COMPANY)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(0.5)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
         time.sleep(1)
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_squads_service_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestSquadsService"
         self.driver.get(settings.Const.SERVICE_SQUADS_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys(settings.Const.COMPANY)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD
+        ).send_keys(settings.Const.COMPANY)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_devops_service_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestDevopsService"
         self.driver.get(settings.Const.SERVICE_DEVOPS_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys(settings.Const.COMPANY)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD
+        ).send_keys(settings.Const.COMPANY)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_qa_service_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestQaService"
         self.driver.get(settings.Const.SERVICE_QA_PAGE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys(settings.Const.COMPANY)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD
+        ).send_keys(settings.Const.COMPANY)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_agile_article_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestAgileArticle"
         self.driver.get(settings.Const.AGILE_ARTICLE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys(settings.Const.COMPANY)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD
+        ).send_keys(settings.Const.COMPANY)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_pitfalls_article_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestPitfallsArticle"
         self.driver.get(settings.Const.PITFALLS_ARTICLE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_cto_article_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         name_id = "TestCtoArticle"
         self.driver.get(settings.Const.CTO_ARTICLE)
         self.accept_cookie()
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.NAME_FIELD).send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD).send_keys(settings.Const.LAST_NAME)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD).send_keys(settings.Const.COMPANY)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.NAME_FIELD
+        ).send_keys(name_id)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
+        ).send_keys(settings.Const.LAST_NAME)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD
+        ).send_keys(settings.Const.COMPANY)
         time.sleep(1)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
+        ).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
+        assert bool(get_email(name_id)) is not False,\
+            f"Email have no correct id -  {name_id} in body"
 
     def open_and_send_anchorfree_case_form(self):
+        """Opens given page, send feedback form
+        and perform 2 assertions consistently.
+        """
         self.driver.get(settings.Const.ANCHORFREE_CASE)
         self.accept_cookie()
         self.driver.execute_script("window.scrollTo(0, 1000)")
@@ -277,14 +500,17 @@ class FeedBackForms(BaseForm):
         ).click()
         name_id = "TestAnchorfreeCase"
         self.driver.find_element(By.NAME, "user_name").send_keys(name_id)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD).send_keys(settings.Const.EMAIL)
-        self.driver.find_element(By.NAME, BaseFeedbackFormLocators.PHONE_FIELD).send_keys(settings.Const.PHONE)
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
+        ).send_keys(settings.Const.EMAIL)
+
+        self.driver.find_element(
+            By.NAME, BaseFeedbackFormLocators.PHONE_FIELD
+        ).send_keys(settings.Const.PHONE)
         time.sleep(1)
         self.driver.find_element(By.NAME, BaseFeedbackFormLocators.SEND_BUTTON).click()
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(get_email(name_id)) is not False, f"Email have no correct id -  {name_id} in body"
-
-
-
+        assert bool(get_email(name_id)) is not False, \
+            f"Email have no correct id -  {name_id} in body"
