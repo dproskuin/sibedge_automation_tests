@@ -1,6 +1,8 @@
 from selenium.webdriver import Remote as RemoteWebDriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 from imap_tools import MailBox
+from .locators import MainPageLocators
 import settings
 
 class BaseForm:
@@ -17,7 +19,14 @@ class BaseForm:
             return False
         return True
 
-    def get_email(name_id: str) -> str or bool:
+    def accept_cookie(self) -> None:
+        """Finds "allow" button on cookie alert and click on it."""
+        self.driver.find_element(
+            By.CSS_SELECTOR,
+            MainPageLocators.COOKIE_ALLOW_BUTTON,
+        ).click()
+
+    def get_email(name_id: str) -> bool:
         """Returns True, if email body contains correct
         "name_id" value. Error string, if email body doesn't.
         """
