@@ -16,6 +16,7 @@ class FeedBackForms(BaseForm):
 
     def open_about_us_and_form(self) -> None:
         """This method will open About us dropdown and click on element."""
+        self.driver.get(settings.Const.CLIENTS_PAGE)
         about_us = self.driver.find_element(
             By.CSS_SELECTOR,
             MainPageLocators.ABOUT_US_BUTTON,
@@ -60,7 +61,6 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestSubscribeToUs"
-        self.driver.get(settings.Const.CLIENTS_PAGE)
         self.driver.find_element(
             By.ID, SubscribeFormLocators.NAME_FIELD
         ).send_keys(name_id)
