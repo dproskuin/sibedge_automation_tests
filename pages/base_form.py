@@ -42,7 +42,7 @@ class BaseForm:
                 return True
 
     @staticmethod
-    def clean_email_folder():
+    def clean_email_folder() -> None:
         """Delete all email messages in outlook folder (clean up)."""
         with MailBox("outlook.office365.com").login(
                 settings.Const.IMAP_USER, settings.Const.IMAP_PASSWORD

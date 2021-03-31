@@ -1,7 +1,6 @@
 import allure
 from pages.feedback_forms import FeedBackForms
 from pages.base_form import BaseForm
-
 """Here are located test cases for site pages.
 
 Executing:
@@ -18,7 +17,6 @@ Creating allure report:
 1) pytest --alluredir=[dir] [test_file.py]
 3) allure serve [dir].
 """
-
 
 @allure.severity(allure.severity_level.CRITICAL)
 def test_send_write_to_us_form(driver):
@@ -112,9 +110,10 @@ def test_send_cto_article_form(driver):
 
 
 @allure.severity(allure.severity_level.NORMAL)
-def test_send_anchorfree_case_form(driver):
+def test_send_korona_case_form(driver):
     page = FeedBackForms(driver)
-    page.open_and_send_anchorfree_case_form()
+    page.open_and_send_korona_case_form()
 
 def test_clean_email_folder():
+    print("Cleaning up email folder . . .")
     BaseForm.clean_email_folder()

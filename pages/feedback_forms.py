@@ -197,12 +197,12 @@ class FeedBackForms(BaseForm):
         """Opens given page, send feedback form
         and perform 2 assertions consistently.
         """
-        name_id = "TestBlog"
+        email_id = settings.Const.EMAIL
         self.driver.get(settings.Const.BLOG_PAGE)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
-        ).send_keys(name_id)
+        ).send_keys(settings.Const.LAST_NAME)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD
         ).send_keys(settings.Const.EMAIL)
@@ -213,8 +213,8 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(BaseForm.get_email(name_id)) is not False, \
-            f"Email have no correct id -  {name_id} in body"
+        assert bool(BaseForm.get_email(email_id)) is not False, \
+            f"Email have no correct id -  {email_id} in body"
 
     def open_and_send_development_service_form(self):
         """Opens given page, send feedback form
@@ -413,7 +413,7 @@ class FeedBackForms(BaseForm):
         """Opens given page, send feedback form
         and perform 2 assertions consistently.
         """
-        name_id = "TestPitfallsArticle"
+        message = settings.Const.PITFALLS_MESSAGE
         self.driver.get(settings.Const.PITFALLS_ARTICLE)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
@@ -432,8 +432,8 @@ class FeedBackForms(BaseForm):
 
         assert "success" in self.driver.current_url, "No 'success' in URL"
         time.sleep(3)
-        assert bool(BaseForm.get_email(name_id)) is not False, \
-            f"Email have no correct id -  {name_id} in body"
+        assert bool(BaseForm.get_email(message)) is not False, \
+            f"Email have no correct id -  {message} in body"
 
     def open_and_send_cto_article_form(self):
         """Opens given page, send feedback form
@@ -457,7 +457,7 @@ class FeedBackForms(BaseForm):
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.COMPANY_FIELD
         ).send_keys(settings.Const.COMPANY)
-        time.sleep(1)
+        time.sleep(3)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.SEND_BUTTON
         ).click()
@@ -467,11 +467,11 @@ class FeedBackForms(BaseForm):
         assert bool(BaseForm.get_email(name_id)) is not False, \
             f"Email have no correct id -  {name_id} in body"
 
-    def open_and_send_anchorfree_case_form(self):
+    def open_and_send_korona_case_form(self):
         """Opens given page, send feedback form
         and perform 2 assertions consistently.
         """
-        self.driver.get(settings.Const.ANCHORFREE_CASE)
+        self.driver.get(settings.Const.KORONA_CASE)
         BaseForm.accept_cookie(self)
         self.driver.execute_script("window.scrollTo(0, 1000)")
         self.driver.find_element_by_css_selector(
