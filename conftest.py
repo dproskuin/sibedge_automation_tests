@@ -1,10 +1,11 @@
+"""This module contains configurations for browser and tests."""
 import pytest
 from selenium import webdriver
 
-
 def pytest_addoption(parser):
+
     parser.addoption("--browser_language", action="store", default="en",
-                     help="Choose language: ru or en")
+                     help="Choose browser language: ru or en")
 
 @pytest.fixture(autouse=True, scope="function")
 def driver(request):

@@ -12,6 +12,7 @@ Choose browser language: --browser_language=[ru]/[en]
 -v = verbose mode
 -m = run marked tests
 -s = string output
+for rerunning failure tests == --reruns [number]
 
 Creating allure report:
 1) pytest --alluredir=[dir] [test_file.py]
