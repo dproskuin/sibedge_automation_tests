@@ -12,11 +12,11 @@ from .locators import (
 
 
 class FeedBackForms(BaseForm):
-    """Contains methods for interaction with feedback forms on RU website."""
+    """Contains methods for interaction with feedback forms on EN website."""
 
     def open_about_us_and_form(self) -> None:
         """This method will open About us dropdown and click on element."""
-        self.driver.get(settings.Const.CLIENTS_PAGE)
+        self.driver.get(settings.Const.CLIENTS_PAGE_EN)
         about_us = self.driver.find_element(
             By.CSS_SELECTOR,
             MainPageLocators.ABOUT_US_BUTTON,
@@ -32,7 +32,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestWriteToUs"
-        self.driver.get(settings.Const.CLIENTS_PAGE)
+        self.driver.get(settings.Const.CLIENTS_PAGE_EN)
         self.driver.find_element(
             By.CSS_SELECTOR, MainPageLocators.HEADER_FORM_BUTTON
         ).click()
@@ -84,7 +84,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestMainPage"
-        self.driver.get(settings.Const.MAIN_PAGE)
+        self.driver.get(settings.Const.MAIN_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -112,7 +112,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestModelsPage"
-        self.driver.get(settings.Const.MODELS_PAGE)
+        self.driver.get(settings.Const.MODELS_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -140,7 +140,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestAboutUs"
-        self.driver.get(settings.Const.ABOUT_US_PAGE)
+        self.driver.get(settings.Const.ABOUT_US_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -169,7 +169,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestContacts"
-        self.driver.get(settings.Const.CONTACTS_PAGE)
+        self.driver.get(settings.Const.CONTACTS_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -198,7 +198,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         email_id = "blog@test.com"
-        self.driver.get(settings.Const.BLOG_PAGE)
+        self.driver.get(settings.Const.BLOG_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.LAST_NAME_FIELD
@@ -221,7 +221,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestDevelopmentService"
-        self.driver.get(settings.Const.SERVICE_DEVELOPMENT_PAGE)
+        self.driver.get(settings.Const.SERVICE_DEVELOPMENT_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -253,7 +253,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestExtensionService"
-        self.driver.get(settings.Const.SERVICE_EXTENSION_PAGE)
+        self.driver.get(settings.Const.SERVICE_EXTENSION_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -286,7 +286,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestSquadsService"
-        self.driver.get(settings.Const.SERVICE_SQUADS_PAGE)
+        self.driver.get(settings.Const.SERVICE_SQUADS_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -318,7 +318,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestDevopsService"
-        self.driver.get(settings.Const.SERVICE_DEVOPS_PAGE)
+        self.driver.get(settings.Const.SERVICE_DEVOPS_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -350,7 +350,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestQaService"
-        self.driver.get(settings.Const.SERVICE_QA_PAGE)
+        self.driver.get(settings.Const.SERVICE_QA_PAGE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -382,7 +382,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestAgileArticle"
-        self.driver.get(settings.Const.AGILE_ARTICLE)
+        self.driver.get(settings.Const.AGILE_ARTICLE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -413,8 +413,8 @@ class FeedBackForms(BaseForm):
         """Opens given page, send feedback form
         and perform 2 assertions consistently.
         """
-        message = settings.Const.PITFALLS_MESSAGE
-        self.driver.get(settings.Const.PITFALLS_ARTICLE)
+        message = settings.Const.PITFALLS_MESSAGE_EN
+        self.driver.get(settings.Const.PITFALLS_ARTICLE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
@@ -440,7 +440,7 @@ class FeedBackForms(BaseForm):
         and perform 2 assertions consistently.
         """
         name_id = "TestCtoArticle"
-        self.driver.get(settings.Const.CTO_ARTICLE)
+        self.driver.get(settings.Const.CTO_ARTICLE_EN)
         BaseForm.accept_cookie(self)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.NAME_FIELD
