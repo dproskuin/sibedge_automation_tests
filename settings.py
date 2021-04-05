@@ -1,5 +1,5 @@
 class Const:
-    ENVIRONMENT = "dev."
+    ENVIRONMENT = "se."
     IMAP_USER = "test4site@sibedge.com"
     IMAP_PASSWORD = "Hup28813"
     MAIN_PAGE = f"https://{ENVIRONMENT}sibedge.com/"
@@ -7,6 +7,7 @@ class Const:
     MODELS_PAGE = f"https://{ENVIRONMENT}sibedge.com/models/"
     CONTACTS_PAGE = f"https://{ENVIRONMENT}sibedge.com/contacts/"
     BLOG_PAGE = f"https://{ENVIRONMENT}sibedge.com/blog/"
+    SITEMAP_PAGE = f"https://{ENVIRONMENT}sibedge.com/sitemap/"
     FORM_IN_BLOG_POST = f"https://{ENVIRONMENT}sibedge.com/blog/technological-trends-in-digital-education-2021/"
     SERVICE_DEVELOPMENT_PAGE = f"https://{ENVIRONMENT}sibedge.com/services/development/"
     SERVICE_EXTENSION_PAGE = f"https://{ENVIRONMENT}sibedge.com/services/team-extension/"

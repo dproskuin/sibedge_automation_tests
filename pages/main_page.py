@@ -1,5 +1,7 @@
+"""This module contains methods for main site elements."""
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+import settings
 from .base_page import BasePage
 from .locators import (
     ModelsPageLocators,
@@ -23,7 +25,7 @@ LINK = "https://se.sibedge.com/en/"
 
 
 class MainPage(BasePage):
-    """This class contains methods for opening pages/elements + asserts"""
+    """This class contains methods for opening pages and asserts"""
 
     def open_about_us_list(self):
         about_us = self.driver.find_element(
@@ -143,14 +145,6 @@ class MainPage(BasePage):
             ".cookie-alert__button.cookie-alert__button--agree.js--cookie-alert-allow",
         ).click()
 
-    def open_main_page_by_click_to_logo(self):
-        self.driver.find_element(
-            By.CSS_SELECTOR,
-            ".header__logo > svg",
-        ).click()
-        url = "https://se.sibedge.com/en/"
-        assert url == MainPageLocators.MAIN_URL
-
     def open_get_in_touch_form(self):
         self.driver.find_element(
             By.CSS_SELECTOR,
@@ -175,7 +169,7 @@ class MainPage(BasePage):
 
         assert self.is_element_present(
             *WhySibedgePageLocators.WHYSIBEDGE_HEADER),\
-            "Why sibedge header is not presented"
+            "'Why sibedge' header is not presented"
 
     def open_press_page(self):
         self.open_about_us_list()
@@ -199,7 +193,7 @@ class MainPage(BasePage):
             "Blog header is not presented. Check test results."
 
     def open_sitemap_page(self):
-        self.driver.get("https://dev.sibedge.com/sitemap/")
+        self.driver.get(settings.Const.SITEMAP_PAGE)
 
         assert self.is_element_present(
             *SitemapLocators.SITEMAP_HEADER

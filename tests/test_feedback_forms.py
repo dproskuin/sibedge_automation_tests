@@ -19,6 +19,7 @@ Creating allure report:
 3) allure serve [dir].
 """
 
+
 @allure.severity(allure.severity_level.CRITICAL)
 def test_send_write_to_us_form(driver):
     page = FeedBackForms(driver)
