@@ -26,7 +26,6 @@ LINK = "https://se.sibedge.com/en/"
 
 class MainPage(BasePage):
     """This class contains methods for opening pages and asserts"""
-
     def open_about_us_list(self):
         about_us = self.driver.find_element(
             By.CSS_SELECTOR,

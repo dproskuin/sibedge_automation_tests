@@ -9,6 +9,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture(autouse=True, scope="function")
 def driver(request):
+    """Setup and teardown options for webdriver"""
     browser_language = request.config.getoption("browser_language")
 
     if browser_language == "ru":

@@ -5,7 +5,6 @@ from selenium.common.exceptions import NoSuchElementException
 
 class BasePage:
     """Contains Basic page methods for pages (Page object)"""
-
     def __init__(self, driver: RemoteWebDriver, link, timeout=10):
         self.driver = driver
         self.link = link

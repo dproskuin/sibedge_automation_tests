@@ -1,3 +1,4 @@
+"""This module contains constants (urls, text-messages, creds for mailbox"""
 class Const:
     ENVIRONMENT = "se."
     IMAP_USER = "test4site@sibedge.com"
