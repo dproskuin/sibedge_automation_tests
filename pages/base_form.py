@@ -8,9 +8,9 @@ from .locators import MainPageLocators
 
 class BaseForm:
     """This class describes Basic feedback forms methods (Page object)"""
-
-    def __init__(self, driver: RemoteWebDriver, timeout=10):
+    def __init__(self, link, driver: RemoteWebDriver, timeout=10):
         self.driver = driver
+        self.link = link
         self.driver.implicitly_wait(timeout)
 
     def is_element_present(self, how, what) -> bool:
@@ -45,6 +45,9 @@ class BaseForm:
                     return False
 
                 return True
+
+    def open(self):
+        self.driver.get(self.link)
 
     @staticmethod
     def clean_email_folder() -> None:
