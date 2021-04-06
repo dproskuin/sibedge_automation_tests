@@ -114,9 +114,9 @@ def test_send_cto_article_form(driver):
 
 @pytest.mark.ru
 @allure.severity(allure.severity_level.NORMAL)
-def test_send_korona_case_form(driver):
+def test_send_deferit_case_form(driver):
     page = FeedBackForms(driver)
-    page.open_and_send_korona_case_form()
+    page.open_and_send_deferit_case_form()
 
 @pytest.mark.ru
 def test_clean_email_folder():

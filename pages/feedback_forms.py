@@ -547,11 +547,11 @@ class FeedBackForms(BaseForm):
         assert bool(BaseForm.get_email(self, name_id)) is not False, \
             f"Email have no correct id - {name_id} in body"
 
-    def open_and_send_korona_case_form(self):
+    def open_and_send_deferit_case_form(self):
         """Opens given page, send feedback form
         and perform 2 assertions consistently.
         """
-        self.driver.get(settings.Const.KORONA_CASE)
+        self.driver.get(settings.Const.DEFERIT_CASE)
         BaseForm.accept_cookie(self)
         self.driver.execute_script("window.scrollTo(0, 1000)")
         self.driver.find_element_by_css_selector(

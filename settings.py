@@ -41,3 +41,4 @@ class Const:
     CTO_ARTICLE_EN = f"https://{ENVIRONMENT}sibedge.com/en/article/ctos-reshape-it-priorities-to-overcome-crisis-mode/"
     PITFALLS_MESSAGE_EN = "Major Pitfalls to Avoid When Expanding a Software Development Team"
     DEFERIT_CASE_EN = f"https://{ENVIRONMENT}sibedge.com/en/cases/first-online-platform-for-deferred-utility-bill-payment-in-australia/"
+    DEFERIT_CASE = f"https://{ENVIRONMENT}sibedge.com/cases/first-online-platform-for-deferred-utility-bill-payment-in-australia/"
