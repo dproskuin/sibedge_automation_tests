@@ -1,7 +1,3 @@
-import allure
-import pytest
-from pages.feedback_forms import FeedBackForms, FeedBackFormsEn
-from pages.base_form import BaseForm
 """Here are located test cases for site pages.
 
 Executing:
@@ -9,18 +5,23 @@ Type 'pytest [filename] (test_main_page.py)'
 to the command line to execute test cases
 
 Parameters:
-Choose browser language: --browser_language=[ru]/[en] 
+Choose browser language: --browser_language=[ru]/[en]
 -v = verbose mode
 -m = run marked tests
 -s = string output
 for rerunning failure tests == --reruns [number]
-
+For example:
+pytest -m [en/ru] for running tests on EN or RU site
 Creating allure report:
 1) pytest --alluredir=[dir] [test_file.py]
 3) allure serve [dir].
 """
+import allure
+import pytest
+from pages.feedback_forms import FeedBackForms, FeedBackFormsEn
+from pages.base_form import BaseForm
 
-
+@pytest.mark.ru
 @allure.severity(allure.severity_level.CRITICAL)
 def test_send_write_to_us_form(driver):
     page = FeedBackForms(driver)
@@ -215,9 +216,9 @@ def test_send_cto_article_form_en(driver):
 
 @pytest.mark.en
 @allure.severity(allure.severity_level.NORMAL)
-def test_send_korona_case_form_en(driver):
+def test_send_deferit_case_form_en(driver):
     page = FeedBackFormsEn(driver)
-    page.open_and_send_korona_case_form()
+    page.open_and_send_deferit_case_form()
 
 @pytest.mark.en
 def test_clean_email_folder_en():

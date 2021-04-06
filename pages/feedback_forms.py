@@ -1110,7 +1110,7 @@ class FeedBackFormsEn(BaseForm):
         assert bool(BaseForm.get_email(self, name_id)) is not False, \
             f"Email have no correct id - {name_id} in body"
 
-    def open_and_send_korona_case_form(self):
+    def open_and_send_deferit_case_form(self):
         """Opens given page, send feedback form
         and perform 2 assertions consistently.
         """
@@ -1120,7 +1120,7 @@ class FeedBackFormsEn(BaseForm):
         self.driver.find_element_by_css_selector(
             ".redesign-content-case__sliding [data-form]",
         ).click()
-        name_id = "TestKoronaCase"
+        name_id = "TestDeferitCase"
         self.driver.find_element(By.NAME, "user_name").send_keys(name_id)
         self.driver.find_element(
             By.NAME, BaseFeedbackFormLocators.EMAIL_FIELD

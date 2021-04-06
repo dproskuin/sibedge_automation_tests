@@ -1,4 +1,4 @@
-"""This module contains methods for main site elements."""
+"""This module describes site's main page methods (Page object)."""
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 import settings
