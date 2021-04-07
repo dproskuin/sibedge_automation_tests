@@ -1,23 +1,21 @@
-import allure
-from pages.main_page import MainPage, LINK
 """Here are located test cases for site pages.
 
 Executing:
-
 Type 'pytest [filename] (test_main_page.py)'
 to the command line to execute test cases
 
 Parameters:
-
-Choose browser language: --browser_language=[ru]/[en] 
+Choose browser language: --browser_language=[ru]/[en]
 -v = verbose mode
 -m = run marked tests
 -s = string output
-
+for rerunning failure tests == --reruns [number]
 Creating allure report:
 1) pytest --alluredir=[dir] [test_file.py]
 3) allure serve [dir].
 """
+import allure
+from pages.main_page import MainPage, LINK
 
 @allure.severity(allure.severity_level.CRITICAL)
 def test_user_can_go_to_models_page(driver):
@@ -76,13 +74,6 @@ def test_user_can_go_to_squads_product_page(driver):
     page.open_squads_product_page()
 
 @allure.severity(allure.severity_level.CRITICAL)
-def test_user_can_go_to_main_page_by_clicking_to_logo(driver):
-    page = MainPage(driver, LINK)
-    page.open()
-    page.accept_cookie()
-    page.open_main_page_by_click_to_logo()
-
-@allure.severity(allure.severity_level.CRITICAL)
 def test_user_can_open_get_in_touch_form(driver):
     page = MainPage(driver, LINK)
     page.open()
@@ -118,12 +109,6 @@ def test_open_blog_page(driver):
     page.accept_cookie()
     page.open_blog_page()
 
-@allure.severity(allure.severity_level.CRITICAL)
-def test_open_subscribe_to_us_form(driver):
-    page = MainPage(driver, LINK)
-    page.open()
-    page.accept_cookie()
-    page.open_subscribe_to_us_form()
 
 @allure.severity(allure.severity_level.CRITICAL)
 def test_open_sitemap_page(driver):
