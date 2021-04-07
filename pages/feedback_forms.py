@@ -17,7 +17,7 @@ class FeedBackForms(BaseForm):
     """Contains methods for interaction with feedback forms on RU website."""
     def open_about_us_and_form(self) -> None:
         """This method will open About us dropdown and click on element."""
-        self.driver.get(settings.Const.CLIENTS_PAGE)
+        BaseForm.open(settings.Const.CLIENTS_PAGE)
         about_us = self.driver.find_element(
             By.CSS_SELECTOR,
             MainPageLocators.ABOUT_US_BUTTON,
